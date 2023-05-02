@@ -6,7 +6,7 @@ function LandingPublic(){
         <Jumbotron />
         <Content />
         <Card />
-        <AboutUs />
+        <ContactUs />
         </>
     )
 }
@@ -33,7 +33,7 @@ function Content(){
         <>
             {/* make content with title and paragraph, with 90% width, with shadow */}
             <div className="flex flex-col justify-center items-center bg-gray-100 p-10 shadow-lg m-8">
-                <h1 className="text-4xl font-bold mb-4">Our Vision</h1>
+                <h1 className="text-4xl font-bold mb-4">About Us</h1>
                 <p className="text-lg mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
             </div>
         </>
@@ -45,23 +45,23 @@ function Card(){
         <>
             {/* make 3 cards, with title "Lorem Ipsum" on top of the cards */}
             <div className="flex flex-col justify-center items-center bg-gray-100 p-10 shadow-lg m-8">
-                <h1 className="text-4xl font-bold mb-4">Lorem Ipsum</h1>
+                <h1 className="text-4xl font-bold mb-4">Popular Job</h1>
                 <div className="flex flex-row justify-center items-center">
                     <div className="flex flex-col justify-center items-center bg-white p-10 shadow-lg m-4">
-                        <h1 className="text-2xl font-bold mb-4">Lorem Ipsum</h1>
+                        <h1 className="text-2xl font-bold mb-4">IT - Software testing</h1>
                         <p className="text-lg mb-8">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
                         </p>
                     </div>
                     <div className="flex flex-col justify-center items-center bg-white p-10 shadow-lg m-4">
-                        <h1 className="text-2xl font-bold mb-4">Lorem Ipsum</h1>
+                        <h1 className="text-2xl font-bold mb-4">Designer - UI UX</h1>
                         <p className="text-lg mb-8">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
 
                         </p>
                     </div>
                     <div className="flex flex-col justify-center items-center bg-white p-10 shadow-lg m-4">
-                        <h1 className="text-2xl font-bold mb-4">Lorem Ipsum</h1>
+                        <h1 className="text-2xl font-bold mb-4">Data - Data Management</h1>
                         <p className="text-lg mb-8">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
                         </p>
@@ -73,12 +73,12 @@ function Card(){
     )
 }
 
-function AboutUs(){
+function ContactUs(){
     return(
         <>
             {/* About us, has 2 columns. left column has address, right column has phone and email */}
             <div className="flex flex-col justify-center items-center bg-gray-100 p-10 shadow-lg m-8">
-                <h1 className="text-4xl font-bold mb-4">About Us</h1>
+                <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
                 <div className="flex flex-row justify-center items-center">
                     <div className="flex flex-col justify-center items-center bg-white p-10 shadow-lg m-4">
                         <h1 className="text-2xl font-bold mb-4">Address</h1>

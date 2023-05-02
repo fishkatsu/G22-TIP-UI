@@ -20,17 +20,17 @@ const NavbarComponent = () => {
             </Link>
         </li>
         <li className='p-4 whitespace-nowrap'>
-            <Link to={'/jobAvailable'} className="mr-4 text-navMenu text-xl font-bold">
+            <Link to={'/jobAvailable'} className="mr-4 text-navMenu uppercase text-xl font-bold">
                     Job Available
             </Link>
         </li>
         <li className='p-4 whitespace-nowrap'>
-            <Link to={'/ApplyJob'} className="mr-4 text-navMenu text-xl font-bold">
+            <Link to={'/ApplyJob'} className="mr-4 text-navMenu uppercase text-xl font-bold">
                     Apply Job
             </Link>
         </li>
         <li className='p-4'>
-            <Link to={'/login'} className="text-navMenu text-xl font-bold">
+            <Link to={'/login'} className="text-navMenu uppercase text-xl font-bold">
                     Login
             </Link>
         </li>
