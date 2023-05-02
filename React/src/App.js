@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       path: '/imageComponent',
       element: <imageComponent />
     }
-
+  test
   ]
   }
 ])
