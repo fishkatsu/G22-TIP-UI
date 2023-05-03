@@ -6,8 +6,6 @@ function JobAvailable(){
     )
 }
 
-
-
 function JobTable() {
     return(
         <>
