@@ -13,18 +13,15 @@ function LandingPublic(){
 
 function Jumbotron(){
     return(
-    <div
-        className="h-screen bg-cover bg-center"
-        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/pic1.jpg)` }}
-        >
-            <div className="h-full flex flex-col justify-center items-center">
-                <h1 className="text-black text-4xl font-bold mb-4 bg-gray-100 p-3 rounded-full">Welcome to CorpU University</h1>
-                <p className="text-black text-lg mb-8 bg-gray-100 p-3 rounded-full">Learn and grow with us</p>
-                <button className="bg-white text-black px-6 py-2 rounded-full shadow-lg">
-                Apply Now
-                </button>
-            </div>
+    <div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/pic1.jpg)` }}>
+        <div className="h-full flex flex-col justify-center items-center">
+            <h1 className="text-black text-4xl font-bold mb-4 bg-gray-100 p-3 rounded-full">Welcome to CorpU University</h1>
+            <p className="text-black text-lg mb-8 bg-gray-100 p-3 rounded-full">Learn and grow with us</p>
+            <button className="bg-white text-black px-6 py-2 rounded-full shadow-lg">
+            Apply Now
+            </button>
         </div>
+    </div>
     );
 }
 
