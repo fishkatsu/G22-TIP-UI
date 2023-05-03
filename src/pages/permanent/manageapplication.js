@@ -4,6 +4,7 @@ const ManageApplication = () => {
   return (
     <>
         {/* describe manage application */}
+        {/* view, accept, decline applicant */}
     </>
   )
 }

@@ -4,6 +4,7 @@ const ApplyJob = () => {
   return (
     <>
         {/* apply job */}
+        {/* can retrieve data from jobdescription */}
     </>
   )
 }

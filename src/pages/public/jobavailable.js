@@ -2,6 +2,7 @@ function JobAvailable(){
     return(
         <>
         <JobTable />
+        {/* make popup for for job details when clicked */}
         </>
     )
 }

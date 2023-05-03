@@ -4,6 +4,7 @@ const ManageSessional = () => {
   return (
     <>
       {/* manage sessional */}
+      {/* search and view details of applicant */}
     </>
   )
 }

@@ -2,7 +2,9 @@ import React from 'react'
 
 const Login = () => {
   return (
-    <div>login</div>
+    <>
+      {/* make a feature so can retrieve data from register */}
+    </>
   )
 }
 
