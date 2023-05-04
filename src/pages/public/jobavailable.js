@@ -32,6 +32,7 @@ function JobTable() {
                     <td className="border px-4 py-2">Clayton</td>
                     <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
                     <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2"><a href = "apply.js" id='BF01T'>Apply</a></td>       
                 </tr>
                 <tr>
                     <td className="border px-4 py-2">CS01T</td>
@@ -41,6 +42,7 @@ function JobTable() {
                     <td className="border px-4 py-2">Geelong</td>
                     <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
                     <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2"><a href = "apply.js" id='CS01T'>Apply</a></td> 
                 </tr>
                 <tr>
                     <td className="border px-4 py-2">AF01T</td>
@@ -50,6 +52,7 @@ function JobTable() {
                     <td className="border px-4 py-2">Clayton</td>
                     <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
                     <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2"><a href = "apply.js" id='AF01T'>Apply</a></td> 
                 </tr>
                 <tr className="bg-gray-100">
                     <td className="border px-4 py-2">CS02L</td>
@@ -59,6 +62,7 @@ function JobTable() {
                     <td className="border px-4 py-2">Geelong</td>
                     <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
                     <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2"><a href = "apply.js" id='CS02L'>Apply</a></td> 
                 </tr>
                 <tr className="bg-gray-100">
                     <td className="border px-4 py-2">EF02L</td>
@@ -68,6 +72,7 @@ function JobTable() {
                     <td className="border px-4 py-2">Clayton</td>
                     <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
                     <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2"><a href = "apply.js" id='EF02L'>Apply</a></td> 
                 </tr>
                 <tr className="bg-gray-100">
                     <td className="border px-4 py-2">HS02L</td>
@@ -77,6 +82,7 @@ function JobTable() {
                     <td className="border px-4 py-2">Clayton</td>
                     <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
                     <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2"><a href = "apply.js" id='HS02L'>Apply</a></td> 
                 </tr>
             </tbody>
             </table>
