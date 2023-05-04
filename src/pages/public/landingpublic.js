@@ -2,13 +2,12 @@ import React from 'react';
 
 function LandingPublic(){
     return(
-        <>
+        <div>
         <Jumbotron />
         <Content />
         <Card />
         <ContactUs />
-        <AllMenu />
-        </>
+        </div>
     )
 }
 
@@ -96,15 +95,6 @@ function ContactUs(){
                     </div>
                 </div>
             </div>
-
-        </>
-    )
-}
-
-function AllMenu(){
-    return(
-        <>
-            
 
         </>
     )

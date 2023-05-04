@@ -9,10 +9,12 @@ import AppRoutes from './components/router';
 
 function App() {
   return (
+    <>
     <div className="App">
-      <AppRoutes />
-      <Footer />
+      <AppRoutes/>
+      <Footer/>
     </div>
+    </>
   );
 }
 
