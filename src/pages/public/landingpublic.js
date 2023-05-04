@@ -7,6 +7,7 @@ function LandingPublic(){
         <Content />
         <Card />
         <ContactUs />
+        <AllMenu />
         </>
     )
 }
@@ -100,5 +101,13 @@ function ContactUs(){
     )
 }
 
+function AllMenu(){
+    return(
+        <>
+            
+
+        </>
+    )
+}
 
 export default LandingPublic;

@@ -6,6 +6,7 @@ const LandingPermanent = () => {
         {/* landing permanent */}
         {/* todolist: refer to the landingpublic design  */}
         {/* make link to manageapplication, managepublish, managesessional */}
+        <p> aa</p>
     </>
   )
 }

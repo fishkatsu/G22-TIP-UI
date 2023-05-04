@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { Link, Outlet } from 'react-router-dom';
 
-const NavbarPublic = () => {
+const NavbarSessional = () => {
   const [nav, setNav] = useState(false);
 
   const handleNav = () => {
@@ -15,24 +15,24 @@ const NavbarPublic = () => {
       {/* navbar menu */}
       <ul className='hidden md:flex'>
         <li className='p-4'>
-          <Link to={'/'} className="m-4 text-navMenu uppercase text-xl font-bold">
-                  Home
-          </Link>
+            <Link to={'/landingsessional'} className="m-4 text-navMenu uppercase text-xl font-bold">
+                    Home
+            </Link>
         </li>
         <li className='p-4 whitespace-nowrap'>
-          <Link to={'/jobavailable'} className="mr-4 text-navMenu uppercase text-xl font-bold">
-                  Job Available
-          </Link>
+            <Link to={'/jobavailable'} className="mr-4 text-navMenu uppercase text-xl font-bold">
+                    Timetable
+            </Link>
         </li>
         <li className='p-4 whitespace-nowrap'>
-          <Link to={'/applyjob'} className="mr-4 text-navMenu uppercase text-xl font-bold">
-                  Apply Job
-          </Link>
+            <Link to={'/applyjob'} className="mr-4 text-navMenu uppercase text-xl font-bold">
+                    Availability
+            </Link>
         </li>
         <li className='p-4'>
-          <Link to={'/login'} className="text-navMenu uppercase text-xl font-bold">
-                  Login
-          </Link>
+            <Link to={'/login'} className="text-navMenu uppercase text-xl font-bold">
+                    Logout
+            </Link>
         </li>
         
       </ul>
@@ -51,15 +51,15 @@ const NavbarPublic = () => {
         </li>
 
         <li className='p-4 border-b border-gray-700 text-[#FFFFFF]'>
-          <Link to={'/jobavailable'} className="mr-4 text-navMenu uppercase text-xl font-bold">
-                  Job Available
-          </Link>
+            <Link to={'/jobavailable'} className="mr-4 text-navMenu uppercase text-xl font-bold">
+                    Timetable
+            </Link>
         </li>
 
         <li className='p-4 border-b border-gray-700 text-[#FFFFFF]'>
-          <Link to={'/applyjob'} className="mr-4 text-navMenu uppercase text-xl font-bold">
-                  Apply Job
-          </Link>
+            <Link to={'/applyjob'} className="mr-4 text-navMenu uppercase text-xl font-bold">
+                    Availability
+            </Link>
         </li>
 
         <li className='p-4 text-[#FFFFFF]'>
@@ -74,4 +74,4 @@ const NavbarPublic = () => {
   );
 };
 
-export default NavbarPublic;
+export default NavbarSessional;
