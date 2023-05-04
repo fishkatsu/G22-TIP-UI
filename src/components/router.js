@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NavbarPublic from './navbar';
+import NavbarPublic from './navbarpublic';
 import NavbarSessional from './navbarsessional';
 import NavbarPermanent from './navbarpermanent';
 import Logout from './logout';
