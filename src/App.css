@@ -1,17 +1,15 @@
-
-
-.titleHome{
-  font-size: 2em;
+.titleHome {
+	font-size: 2em;
 }
 
-.navMenu{
-  font-size: 1em;
-  /* turn off link underline */
-  text-decoration: none;
-  /* font color white */
-  color: white;
+.navMenu {
+	font-size: 1em;
+	/* turn off link underline */
+	text-decoration: none;
+	/* font color white */
+	color: white;
 }
 
-.firstColor{
-  background-color: #5a5a5a;
+.firstColor {
+	background-color: #5a5a5a;
 }
