@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const ManagePublish = () => {
-  return (
-    <>
-        {/* manage publish */}
-    </>
-  )
+function ManagePublish() {
+	return (
+		<>
+			{/* if time permits
+			page to manage published requests */}
+		</>
+	);
 }
 
-export default ManagePublish
+export default ManagePublish;
