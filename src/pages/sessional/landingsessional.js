@@ -18,7 +18,7 @@ function Jumbotron() {
   return (
     <div
       className="h-screen bg-center bg-cover"
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/pic1.jpg)` }}
+      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/sessionalpage.jpg)` }}
     >
       <div className="flex flex-col items-center justify-center h-full">
         <h1 className="p-3 mb-4 text-4xl font-bold text-black bg-gray-100 rounded-full">
