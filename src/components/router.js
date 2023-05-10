@@ -33,7 +33,7 @@ const AppRoutes = () => {
 				<Route path="/applyjob" element={<ApplyJob />} />
 				<Route path="/login" element={<Login />} />
 
-				<Route path="/home" element={<LandingSessional />} />
+				<Route path="/landingsessional" element={<LandingSessional />} />
 				<Route path="/timetable" element={<Timetable />} />
 				<Route path="/availability" element={<Availability />} />
 
