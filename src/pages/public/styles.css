@@ -1,0 +1,81 @@
+.form{
+    background-color: #ffffff;
+}
+.inputName,
+.inputRef, 
+.inputGender, 
+.inputDOB, 
+.inputStreetSuburb, 
+.inputState, 
+.inputPostcode, 
+.inputPhoneEmail, 
+.inputEducation,
+.inputWorkExp,
+.inputProfReco,
+.inputTimePref{
+    padding: 5px 20px;
+}
+
+.inputName fieldset, 
+.inputRef fieldset, 
+.inputGender fieldset, 
+.inputDOB fieldset, 
+.inputStreetSuburb fieldset, 
+.inputState fieldset, 
+.inputPostcode fieldset, 
+.inputPhoneEmail fieldset,
+.inputEducation fieldset,
+.inputWorkExp fieldset,
+.inputProfReco fieldset,
+.inputTimePref fieldset{  
+    margin: 20px 20px;
+}
+
+
+.applySubhead{
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.applyTable{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 1rem;
+    color: #040000;
+}
+
+td, th{
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    width: 20%;
+}
+    
+input[type=text] {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+
+}
+
+input[type=submit] {
+    background-color: #47474a;
+    color: rgb(243, 237, 237);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=reset] {
+    background-color: #47474a;
+    color: rgb(243, 237, 237);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

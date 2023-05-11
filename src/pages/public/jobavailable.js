@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 function JobAvailable(){
     return(
         <>
         <JobTable />
-        {/* make popup for for job details when clicked */}
         </>
+
     )
 }
 
@@ -20,63 +22,190 @@ function JobTable() {
                     <th className="px-4 py-2">Closing Date</th>
                     <th className="px-4 py-2">Location</th>
                     <th className="px-4 py-2">Employment Type</th>
-                    <th className="px-4 py-2">Job Description</th>
+                    <th className="px-20 py-2">Qualification Requirement</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td className="border px-4 py-2">BF01T</td>
-                    <td className="border px-4 py-2">Tutor</td>
-                    <td className="border px-4 py-2">Business</td>
-                    <td className="border px-4 py-2">31/12/2023</td>
-                    <td className="border px-4 py-2">Clayton</td>
-                    <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
-                    <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2">
+                        BF01T
+                    </td>
+                    <td className="border px-4 py-2">
+                        Tutor (Master Program)
+                    </td>
+                    <td className="border px-4 py-2">
+                        Business
+                    </td>
+                    <td className="border px-4 py-2">
+                        31/12/2023
+                    </td>
+                    <td className="border px-4 py-2">
+                        Clayton
+                    </td>
+                    <td className="border px-4 py-2">
+                        1 Year Contract<br></br>
+                        Part Time
+                    </td>
+                    <td className="border px-4 py-2">
+                        Doctorate degree or demonstrable equivalent professional experience is required.
+                    </td>
+                    <td className="border px-4 py-2">
+                        <Link to={"/applyjob"}>
+							<button className="w-full font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white">
+								Apply
+							</button>
+						</Link>
+                    </td>       
                 </tr>
                 <tr>
-                    <td className="border px-4 py-2">CS01T</td>
-                    <td className="border px-4 py-2">Tutor</td>
-                    <td className="border px-4 py-2">Computer Science</td>
-                    <td className="border px-4 py-2">31/12/2023</td>
-                    <td className="border px-4 py-2">Geelong</td>
-                    <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
-                    <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2">
+                        CS01T
+                    </td>
+                    <td className="border px-4 py-2">
+                        Tutor (Bachelor Program)
+                    </td>
+                    <td className="border px-4 py-2">
+                        Computer Science
+                    </td>
+                    <td className="border px-4 py-2">
+                        31/12/2023
+                    </td>
+                    <td className="border px-4 py-2">
+                        Geelong
+                    </td>
+                    <td className="border px-4 py-2">
+                        1 Year Contract<br></br>Part Time
+                    </td>
+                    <td className="border px-4 py-2">
+                        Master degree with extensive industry experience over many years and tertiary teaching experience are required.
+                    </td>
+                    <td className="border px-4 py-2">
+                        <Link to={"/applyjob"}>
+							<button id="CS01T" className="w-full font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white">
+								Apply
+							</button>
+						</Link>
+                    </td>  
                 </tr>
                 <tr>
-                    <td className="border px-4 py-2">AF01T</td>
-                    <td className="border px-4 py-2">Tutor</td>
-                    <td className="border px-4 py-2">Art</td>
-                    <td className="border px-4 py-2">31/12/2023</td>
-                    <td className="border px-4 py-2">Clayton</td>
-                    <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
-                    <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2">
+                        AF01T
+                    </td>
+                    <td className="border px-4 py-2">
+                        Tutor (Bachelor Program)
+                    </td>
+                    <td className="border px-4 py-2">
+                        Art
+                    </td>
+                    <td className="border px-4 py-2">
+                        31/12/2023
+                    </td>
+                    <td className="border px-4 py-2">
+                        Clayton
+                    </td>
+                    <td className="border px-4 py-2">
+                        1 Year Contract<br></br>Part Time
+                    </td>
+                    <td className="border px-4 py-2"> 
+                        Master degree with extensive industry experience over many years and tertiary teaching experience are required.
+                    </td>
+                    <td className="border px-4 py-2">
+                        <Link to={"/applyjob"}>
+							<button className="w-full font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white">
+								Apply
+							</button>
+						</Link>
+                    </td>  
                 </tr>
                 <tr className="bg-gray-100">
-                    <td className="border px-4 py-2">CS02L</td>
-                    <td className="border px-4 py-2">Lecturer</td>
-                    <td className="border px-4 py-2">Computer Science</td>
-                    <td className="border px-4 py-2">31/12/2023</td>
-                    <td className="border px-4 py-2">Geelong</td>
-                    <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
-                    <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2">
+                        CS02L
+                    </td>
+                    <td className="border px-4 py-2">
+                        Lecturer
+                    </td>
+                    <td className="border px-4 py-2">
+                        Computer Science
+                    </td>
+                    <td className="border px-4 py-2">
+                        31/12/2023
+                    </td>
+                    <td className="border px-4 py-2">
+                        Geelong
+                    </td>
+                    <td className="border px-4 py-2">
+                        1 Year Contract<br></br>Part Time
+                    </td>
+                    <td className="border px-4 py-2">
+                        Doctorate degree or demonstrable equivalent professional experience is required.
+                    </td>
+                    <td className="border px-4 py-2">
+                        <Link to={"/applyjob"}>
+							<button className="w-full font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white">
+								Apply
+							</button>
+						</Link>
+                    </td>   
                 </tr>
                 <tr className="bg-gray-100">
-                    <td className="border px-4 py-2">EF02L</td>
-                    <td className="border px-4 py-2">Lecturer</td>
-                    <td className="border px-4 py-2">Education</td>
-                    <td className="border px-4 py-2">31/12/2023</td>
-                    <td className="border px-4 py-2">Clayton</td>
-                    <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
-                    <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2">
+                        EF02L
+                    </td>
+                    <td className="border px-4 py-2">
+                        Lecturer
+                    </td>
+                    <td className="border px-4 py-2">
+                        Education
+                    </td>
+                    <td className="border px-4 py-2">
+                        31/12/2023
+                    </td>
+                    <td className="border px-4 py-2">
+                        Clayton
+                    </td>
+                    <td className="border px-4 py-2">
+                        1 Year Contract<br></br>Part Time
+                    </td>
+                    <td className="border px-4 py-2">
+                        Doctorate degree or demonstrable equivalent professional experience is required.
+                    </td>
+                    <td className="border px-4 py-2">
+                        <Link to={"/applyjob"}>
+							<button className="w-full font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white">
+								Apply
+							</button>
+						</Link>
+                    </td>  
                 </tr>
                 <tr className="bg-gray-100">
-                    <td className="border px-4 py-2">HS02L</td>
-                    <td className="border px-4 py-2">Lecturer</td>
-                    <td className="border px-4 py-2">Health Science</td>
-                    <td className="border px-4 py-2">31/12/2023</td>
-                    <td className="border px-4 py-2">Clayton</td>
-                    <td className="border px-4 py-2">1 Year Contract<br></br>Full Time</td>
-                    <td className="border px-4 py-2">bla bla bla<br></br>bla bla bla<br></br><a href = "">More Details</a></td>
+                    <td className="border px-4 py-2">
+                        HS02L
+                    </td>
+                    <td className="border px-4 py-2">
+                        Lecturer
+                    </td>
+                    <td className="border px-4 py-2">
+                        Health Science
+                    </td>
+                    <td className="border px-4 py-2">
+                        31/12/2023
+                    </td>
+                    <td className="border px-4 py-2">
+                        Clayton
+                    </td>
+                    <td className="border px-4 py-2">
+                        1 Year Contract<br></br>Part Timee
+                    </td>
+                    <td className="border px-4 py-2">
+                        Doctorate degree or demonstrable equivalent professional experience is required.
+                    </td>
+                    <td className="border px-4 py-2">
+                        <Link to={"/applyjob"}>
+							<button className="w-full font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white">
+								Apply
+							</button>
+						</Link>
+                    </td>   
                 </tr>
             </tbody>
             </table>
@@ -84,4 +213,6 @@ function JobTable() {
         </>
     )
 }
+
+    
 export default JobAvailable;
