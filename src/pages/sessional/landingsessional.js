@@ -21,17 +21,21 @@ function Jumbotron() {
       style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/sessionalpage.jpg)` }}
     >
       <div className="flex flex-col items-center justify-center h-full">
-        <h1 className="p-3 mb-4 text-4xl font-bold text-black bg-gray-100 rounded-full">
-          Welcome to CorpU University
-        </h1>
+        <Link to={"/jobavailable"} className="">
+          <h1 className="p-3 mb-4 text-4xl font-bold text-black bg-gray-100 rounded-full">
+            Our vacancies
+          </h1>
+        </Link>
         <p className="p-3 mb-8 text-lg text-black bg-gray-100 rounded-full">
           Learn and grow with us
         </p>
-        <button className="px-6 py-2 text-black bg-white rounded-full shadow-lg">
-          Apply Now
-        </button>
+        {/* <Link to={"/jobavailable"} className="">
+          <button className="px-6 py-2 text-black bg-white rounded-full shadow-lg">
+            Our vacancies
+          </button>
+        </Link> */}
       </div>
-    </div>
+    </div >
   );
 }
 
@@ -40,11 +44,6 @@ function Card() {
     <>
       {/* make 3 cards, with title "Lorem Ipsum" on top of the cards */}
       <div className="flex flex-col items-center justify-center p-10 m-8 bg-gray-100 shadow-lg">
-        <Link to={"/jobavailable"} className="">
-          <div className="flex flex-col items-center justify-center p-10 m-4 bg-white shadow-lg">
-            <h1 className="mb-4 text-4xl font-bold">Our vacancies</h1>
-          </div>
-        </Link>
         <div className="flex flex-row items-center justify-center">
           <div className="flex flex-col items-center justify-center p-10 m-4 bg-white shadow-lg">
             <h1 className="mb-4 text-2xl font-bold uppercase">
