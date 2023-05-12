@@ -17,55 +17,41 @@ function Login() {
 
 function LoginForm() {
   return (
-    <>
-      {/* make content with title and paragraph, with 90% width, with shadow */}
-      <div className=" flex flex-col items-center mx-auto justify-center p-10 m-20 bg-gray-100 shadow-lg w-2/5 ">
-
-        <h1 className="mb-10 text-4xl font-bold">CorpU.</h1>
-        <from>
-          <div className="flex flex-wrap">
-            <div className=" mr-5">
-              <label className="text-lg font-bold" htmlFor="email">Email</label>
-            </div>
-            <div className="">
-              <input
-                value="email"
-                type="email"
-                id="email"
-                name="email"
-                placeholder="youremail@gmail.com"
-                className="p-2 mb-4 border border-gray-400 w-64"
-              />
-            </div>
+    <div className="flex h-screen">
+      <div className="m-auto w-1/3 text-white flex flex-wrap justify-center shadow-lg rounded-lg bg-gradient-to-br bg-gray-100">
+        <form className="m-5 w-10/12">
+          <h1 className="w-full text-4xl tracking-widest text-center my-6 font-bold text-black">CorpU.</h1>
+          <div className="w-full my-6">
+            <input
+              className="p-2 rounded-md border border-gray-300 w-full"
+              type="email"
+              placeholder="Email"
+            />
+          </div>
+          <div className="w-full my-6">
+            <input
+              className="p-2 rounded-md border border-gray-300 w-full"
+              type="password"
+              placeholder="Password"
+            />
           </div>
 
-          <div className="flex flex-wrap">
-            <div className="mr-5">
-              <label className="text-lg font-bold" htmlFor="password">Password</label>
+          <Link to="/landingpermanent">
+            <div className="w-full my-6">
+              <button
+                className="p-2 rounded-md bg-gradient-to-br bg-gray-500 text-white w-full"
+                type="submit"
+              >
+                Login
+              </button>
             </div>
-            <div className="">
-              <input
-                value="password"
-                type="password"
-                id="password"
-                name="password"
-                placeholder="********"
-                className="p-2 mb-4 border border-gray-400 w-64"
-              />
-            </div>
-          </div>
-
-          <Link to={"/"}>
-            <button type="submit" className="w-full p-2 m-2 text-lg font-bold text-white bg-gray-500 rounded shadow-lg hover:bg-gray-400 hover:text-white">
-              Login
-            </button>
           </Link>
-        </from>
-        <Link to={"/register"}>
-          <button className="w-full p-2 m-2 text-lg font-bold text-white bg-gray-500 rounded shadow-lg hover:bg-gray-400 hover:text-white">Don't have an account? Register here.</button>
-        </Link>
+          <Link to="/register">
+            <p className="w-full text-xs tracking-widest text-center my-6 font-bold text-gray-500 underline">Don't have an account? Register here.</p>
+          </Link>
+        </form>
       </div>
-    </>
+    </div>
   );
 }
 
