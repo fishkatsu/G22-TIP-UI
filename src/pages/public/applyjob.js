@@ -1,7 +1,17 @@
-import React from "react";
+
+import React, { useEffect, useState } from 'react';
 
 
 function ApplyJob() {
+	//retrived the jobID that user clicked and fill into the jobID field
+	const [jobID, setJobID] = useState('');
+
+	useEffect(() => {
+	  const storedJobID = localStorage.getItem('jobID');
+	  setJobID(storedJobID);
+	}, []);
+
+
 	return (
 		<>	
 		<form action="">
@@ -13,9 +23,9 @@ function ApplyJob() {
 							<div className="w-1/4">
 								<label className="text-lg font-bold">Reference Number:</label>
 							</div>
-							<div className="w-1/4">
+							<div className="w-1/4 ">
 								<input
-									type="text" id="RefNum" maxlength="5" minlength="5" pattern="[a-zA-Z0-9]+" required="required" placeholder="Reference number" className="w-full p-2 mb-4 border border-gray-400"
+									type="text" id="RefNum" value={jobID} maxlength="5" minlength="5" pattern="[a-zA-Z0-9]+" required="required" placeholder="Reference number" className="w-full p-2 mb-4 border border-gray-400"
 								/>
 							</div>
 						</div>
