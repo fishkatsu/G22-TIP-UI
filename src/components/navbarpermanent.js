@@ -38,14 +38,14 @@ const NavbarPublic = () => {
 							Sessional Staff
 						</Link>
 					</li>
-					<li className="p-4 whitespace-nowrap">
+					{/* <li className="p-4 whitespace-nowrap">
 						<Link
 							to={"/publishrequest"}
 							className="mr-4 text-xl font-bold text-white uppercase text-navMenu"
 						>
 							Publish Request
 						</Link>
-					</li>
+					</li> */}
 					<li className="p-4">
 						<Link
 							to={"/logout"}

@@ -15,16 +15,18 @@ function Jumbotron() {
 	return (
 		<div
 			className="h-screen bg-center bg-cover"
-			style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/pic1.jpg)` }}
+			style={{
+				backgroundImage: `url(${process.env.PUBLIC_URL}/sessionalpage.jpg)`,
+			}}
 		>
 			<div className="flex flex-col items-center justify-center h-full">
-				<h1 className="p-3 mb-4 text-4xl font-bold text-black bg-gray-100 rounded-full">
+				<h1 className="p-3 text-4xl font-bold text-black bg-gray-100 rounded-full">
 					Welcome to CorpU University
 				</h1>
 				<p className="p-3 mb-8 text-lg text-black bg-gray-100 rounded-full">
 					Learn and grow with us
 				</p>
-				<button className="px-6 py-2 text-black bg-white rounded-full shadow-lg">
+				<button className="px-6 py-2 text-3xl text-black underline bg-white rounded-full shadow-lg">
 					Apply Now
 				</button>
 			</div>
@@ -35,7 +37,6 @@ function Jumbotron() {
 function Content() {
 	return (
 		<>
-			{/* make content with title and paragraph, with 90% width, with shadow */}
 			<div className="flex flex-col items-center justify-center p-10 m-8 bg-gray-100 shadow-lg">
 				<h1 className="mb-4 text-4xl font-bold">About Us</h1>
 				<p className="mb-8 text-lg">
