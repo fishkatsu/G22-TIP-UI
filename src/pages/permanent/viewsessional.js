@@ -69,24 +69,24 @@ function Table() {
 					</table>
 				</div>
 				<div className="flex flex-col w-1/6">
-					<Link to={"/contact"}>
+					{/* <Link to={"/contact"}>
 						<button className="w-full p-2 m-2 text-lg font-bold text-white bg-green-500 rounded shadow-lg hover:bg-green-500 hover:text-black">
 							Contact
 						</button>
-					</Link>
+					</Link> */}
 					<Link to={"/accept"}>
 						<button className="w-full p-2 m-2 text-lg font-bold text-white bg-green-500 rounded shadow-lg hover:bg-green-500 hover:text-black">
 							Accept
 						</button>
 					</Link>
 					<Link to={"/decline"}>
-						<button className="w-full p-2 m-2 text-lg font-bold text-white bg-red-500 rounded shadow-lg hover:bg-green-500 hover:text-black">
+						<button className="w-full p-2 m-2 text-lg font-bold text-white bg-red-500 rounded shadow-lg hover:bg-red-500 hover:text-black">
 							Decline
 						</button>
 					</Link>
 
 					<Link to={"/manageapplication"}>
-						<button className="w-full p-2 m-2 text-lg font-bold text-white bg-gray-500 rounded shadow-lg hover:bg-gray-400 hover:text-white">
+						<button className="w-full p-2 m-2 text-lg font-bold text-white bg-gray-500 rounded shadow-lg hover:bg-gray-500 hover:text-black">
 							Back
 						</button>
 					</Link>

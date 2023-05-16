@@ -4,7 +4,7 @@ function JobAvailable() {
 	return (
 		<>
 			<div className="flex flex-col p-10 m-8 shadow-lg">
-				<h1 className="mb-8 text-4xl font-bold">Sessional Staff List</h1>
+				<h1 className="mb-8 text-4xl font-bold">Job Available</h1>
 				<div className="flex flex-col">
 					<JobTable />
 				</div>
