@@ -1,7 +1,6 @@
+import React from "react";
 import Footer from "./components/footer";
 import AppRoutes from "./components/router";
-// import { RouterProvider } from 'react-router-dom';
-// import "./App.css";
 
 function App() {
 	return (
@@ -10,7 +9,7 @@ function App() {
 				<div className="flex-grow">
 					<AppRoutes />
 				</div>
-				<Footer className="p-4 text-center text-gray-300 bg-gray-900" />
+				<Footer />
 			</div>
 		</>
 	);

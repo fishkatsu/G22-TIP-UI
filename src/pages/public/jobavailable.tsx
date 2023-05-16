@@ -15,8 +15,9 @@ function JobAvailable() {
 
 function JobTable() {
 	// save ID of the job that user clicked
-	const handleClick = (e) => {
-		localStorage.setItem("jobID", e.target.id);
+	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const buttonElement = e.target as HTMLButtonElement;
+		localStorage.setItem("jobID", buttonElement.id);
 	};
 
 	return (

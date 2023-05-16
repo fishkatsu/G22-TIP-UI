@@ -27,8 +27,11 @@ function ReferenceNumber() {
 
 	useEffect(() => {
 		const storedJobID = localStorage.getItem("jobID");
-		setJobID(storedJobID);
+		if (storedJobID) {
+			setJobID(storedJobID);
+		}
 	}, []);
+
 	return (
 		<>
 			<div className="flex flex-wrap w-full mb-8 p-1.5">
@@ -40,10 +43,10 @@ function ReferenceNumber() {
 						type="text"
 						id="RefNum"
 						value={jobID}
-						maxlength="5"
-						minlength="5"
+						maxLength={5}
+						minLength={5}
 						pattern="[a-zA-Z0-9]+"
-						required="required"
+						required
 						placeholder="Reference number"
 						className="w-full p-2 ml-12 border border-gray-400"
 					/>
@@ -52,6 +55,7 @@ function ReferenceNumber() {
 		</>
 	);
 }
+
 function PersonalDetail() {
 	return (
 		<div className="p-1.5">
@@ -65,9 +69,9 @@ function PersonalDetail() {
 						<input
 							type="text"
 							id="FirstName"
-							maxlength="20"
+							maxLength={20}
 							pattern="^[a-zA-Z]+$"
-							required="required"
+							required
 							placeholder="First Name"
 							className="w-full p-2 border border-gray-400"
 						/>
@@ -82,9 +86,9 @@ function PersonalDetail() {
 						<input
 							type="text"
 							id="LastName"
-							maxlength="20"
+							maxLength={20}
 							pattern="^[a-zA-Z]+$"
-							required="required"
+							required
 							placeholder="Last Name"
 							className="w-full p-2 border border-gray-400"
 						/>
@@ -101,7 +105,7 @@ function PersonalDetail() {
 						type="text"
 						id="DOB"
 						pattern="\d{1,2}\/\d{1,2}\/\d{4}"
-						required="required"
+						required
 						placeholder="DD/MM/YYYY"
 						className="w-3/4 p-2 border border-gray-400"
 					/>
@@ -111,21 +115,15 @@ function PersonalDetail() {
 						<label className="text-lg font-bold">Gender:</label>
 					</div>
 					<div className="w-3/4">
-						<input
-							className=""
-							type="Radio"
-							Name="gender"
-							id="Male"
-							required="required"
-						/>
+						<input type="radio" name="gender" id="Male" required />
 						<label className="ml-2 text-lg font-bold">Male</label>
 
 						<input
 							className="ml-8"
-							type="Radio"
-							Name="gender"
+							type="radio"
+							name="gender"
 							id="Female"
-							required="required"
+							required
 						/>
 						<label className="ml-2 text-lg font-bold">Female</label>
 					</div>
@@ -140,8 +138,8 @@ function PersonalDetail() {
 					<input
 						type="text"
 						id="Street"
-						maxlength="40"
-						required="required"
+						maxLength={40}
+						required
 						placeholder="Enter Street"
 						className="w-3/4 p-2 border border-gray-400"
 					/>
@@ -154,8 +152,8 @@ function PersonalDetail() {
 					<input
 						type="text"
 						id="Suburb"
-						maxlength="40"
-						required="required"
+						maxLength={40}
+						required
 						placeholder="Enter Suburb"
 						className="w-3/4 p-2 border border-gray-400"
 					/>
@@ -169,7 +167,7 @@ function PersonalDetail() {
 					<select
 						name="state"
 						id="State"
-						required="required"
+						required
 						className="w-3/4 p-2 border border-gray-400"
 					>
 						<option value="">Please Select</option>
@@ -207,10 +205,10 @@ function PersonalDetail() {
 					<input
 						type="text"
 						id="Postcode"
-						maxlength="4"
-						minlength="4"
+						maxLength={4}
+						minLength={4}
 						pattern="[0-9]{4}"
-						required="required"
+						required
 						placeholder="Enter Postcode"
 						className="w-3/4 p-2 border border-gray-400"
 					/>
@@ -224,10 +222,10 @@ function PersonalDetail() {
 					<input
 						type="text"
 						id="PhoneNum"
-						maxlength="12"
-						minlength="8"
+						maxLength={12}
+						minLength={8}
 						pattern="^[0-9]+"
-						required="required"
+						required
 						placeholder="Enter Phone Number"
 						className="w-3/4 p-2 border border-gray-400"
 					/>
@@ -241,7 +239,7 @@ function PersonalDetail() {
 						type="text"
 						id="Email"
 						pattern="^.+@.+\..{2,3}$"
-						required="required"
+						required
 						placeholder="Enter Email Address"
 						className="w-3/4 p-2 border border-gray-400"
 					/>
@@ -292,7 +290,7 @@ function EducationalBackground() {
 										id={`EdYearFrom${row.id}`}
 										pattern="\d{1,2}\/\d{4}"
 										placeholder="MM/YYYY"
-										maxLength="7"
+										maxLength={7}
 										className="w-11/12 p-2 border border-gray-400"
 									/>
 								</label>
@@ -302,7 +300,7 @@ function EducationalBackground() {
 										id={`EdYearTo${row.id}`}
 										pattern="\d{1,2}\/\d{4}"
 										placeholder="MM/YYYY"
-										maxLength="7"
+										maxLength={7}
 										className="w-11/12 p-2 border border-gray-400"
 									/>
 								</label>
@@ -310,7 +308,7 @@ function EducationalBackground() {
 									<input
 										type="text"
 										id={`SchoolName${row.id}`}
-										maxLength="60"
+										maxLength={60}
 										placeholder="Enter name of the education institution"
 										className="w-11/12 p-2 mr-2 border border-gray-400"
 									/>
@@ -319,7 +317,7 @@ function EducationalBackground() {
 									<input
 										type="text"
 										id={`Quali${row.id}`}
-										maxLength="60"
+										maxLength={60}
 										placeholder="Enter Qualification"
 										className="w-11/12 p-2 border border-gray-400"
 									/>
@@ -397,7 +395,7 @@ function JobExperience() {
 										id={`EmpYearFrom${row.id}`}
 										pattern="\d{1,2}\/\d{4}"
 										placeholder="MM/YYYY"
-										maxLength="7"
+										maxLength={7}
 										className="w-11/12 p-2 border border-gray-400"
 									/>
 								</label>
@@ -407,7 +405,7 @@ function JobExperience() {
 										id={`EmpYearTo${row.id}`}
 										pattern="\d{1,2}\/\d{4}"
 										placeholder="MM/YYYY"
-										maxLength="7"
+										maxLength={7}
 										className="w-11/12 p-2 border border-gray-400"
 									/>
 								</label>
@@ -415,7 +413,7 @@ function JobExperience() {
 									<input
 										type="text"
 										id={`OrgName${row.id}`}
-										maxLength="60"
+										maxLength={60}
 										placeholder="Enter name of the organisation"
 										className="w-11/12 p-2 mr-2 border border-gray-400"
 									/>
@@ -424,7 +422,7 @@ function JobExperience() {
 									<input
 										type="text"
 										id={`Position${row.id}`}
-										maxLength="60"
+										maxLength={60}
 										placeholder="Enter position"
 										className="w-11/12 p-2 border border-gray-400"
 									/>
@@ -495,7 +493,7 @@ function ProfRecognition() {
 										id={`EdYearFrom${row.id}`}
 										pattern="\d{1,2}\/\d{4}"
 										placeholder="MM/YYYY"
-										maxLength="7"
+										maxLength={7}
 										className="w-11/12 p-2 border border-gray-400"
 									/>
 								</label>
@@ -504,7 +502,7 @@ function ProfRecognition() {
 									<input
 										type="text"
 										id={`IssuerName${row.id}`}
-										maxLength="60"
+										maxLength={60}
 										placeholder="Enter name of issuer"
 										className="w-11/12 p-2 mr-2 border border-gray-400"
 									/>
@@ -513,7 +511,7 @@ function ProfRecognition() {
 									<input
 										type="text"
 										id={`RecognitionType${row.id}`}
-										maxLength="60"
+										maxLength={60}
 										placeholder="Enter types of recognition"
 										className="w-11/12 p-2 border border-gray-400"
 									/>
