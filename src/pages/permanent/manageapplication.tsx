@@ -4,15 +4,20 @@ import NavbarPermanent from "../../components/navbarpermanent";
 
 // https://larainfo.com/blogs/react-tailwind-css-table-example
 
-interface EOI {
-    eoiId: string;
-    jobRefer: string;
-    firstName: string;
-    lastName: string;
-    skills: string;
-    streetAddr: string;
+interface Applications {
+    applyNum: string;
+    jobrefNum: string;
+    firstname: string;
+    lastname: string;
+    gender: string;
+    dob: string;
+    street: string;
     suburb: string;
-    emailAddr: string;
+    state: string;
+    postcode: string;
+    phone: string;
+    email: string;
+    availability: string;
 }
 
 function ManageApplication() {
@@ -34,12 +39,12 @@ function ManageApplication() {
 }
 
 function TableC() {
-    const [data, setData] = useState<EOI[]>([]);
+    const [data, setData] = useState<Applications[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:8888/showall.php")
+        fetch("http://localhost:8888/manageapplication.php")
             .then((response) => response.json())
-            .then((data: EOI[]) => setData(data))
+            .then((data: Applications[]) => setData(data))
             .catch((error) => console.error("Error:", error));
     }, []);
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -64,31 +69,31 @@ function TableC() {
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
-                                    Name
+                                    Job Ref
                                 </th>
                                 <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
-                                    Email
+                                    First Name
                                 </th>
                                 <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
-                                    Field 1
+                                    Last Name
                                 </th>
                                 <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
-                                    Field 2
+                                    Email Address
                                 </th>
                                 <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
-                                    Field 3
+                                    status
                                 </th>
                                 <th
                                     scope="col"
@@ -112,35 +117,35 @@ function TableC() {
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {data.map((item) => (
-                                <tr key={item.eoiId}>
+                                <tr key={item.applyNum}>
                                     <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        {item.eoiId}
+                                        {item.applyNum}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         <Link to={"/viewsessional"}>
                                             <button
-                                                id={item.eoiId}
+                                                id={item.applyNum}
                                                 onClick={handleClick}
                                                 className="hover:underline"
                                             >
-                                                {item.firstName}
+                                                {item.jobrefNum}
                                             </button>
                                         </Link>
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.emailAddr}
+                                        {item.firstname}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.lastName}
+                                        {item.lastname}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.skills}
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.streetAddr}
+                                        {item.email}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.suburb}
+                                    </td>
+                                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                                        {item.state}
                                     </td>
                                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         <Link to="/">
@@ -167,28 +172,3 @@ function TableC() {
     );
 }
 export default ManageApplication;
-// {
-// 	/* <th scope="col" className="py-3 pl-4">
-// 											<div className="flex items-center h-5">
-// 												<input
-// 													id="checkbox-all"
-// 													type="checkbox"
-// 													className="text-blue-600 border-gray-200 rounded focus:ring-blue-500"
-// 												/>
-// 												<label htmlFor="checkbox" className="sr-only">
-// 													Checkbox
-// 												</label>
-// 											</div>
-// 										</th>
-// 	<td className="py-3 pl-4">
-// 	<div className="flex items-center h-5">
-// 		<input
-// 			type="checkbox"
-// 			className="text-blue-600 border-gray-200 rounded focus:ring-blue-500"
-// 		/>
-// 		<label htmlFor="checkbox" className="sr-only">
-// 			Checkbox
-// 		</label>
-// 	</div>
-// </td>; */
-// }
