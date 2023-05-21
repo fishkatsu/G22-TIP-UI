@@ -1,37 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavbarSessional from "../../components/navbarsessional";
 
 function LandingSessional() {
-	return (
-		<div className="">
-			<Card />
-		</div>
-	);
+    return (
+        <div className="">
+            <NavbarSessional />
+            <Card />
+        </div>
+    );
 }
 
 function Card() {
-	return (
-		<>
-			<div className="flex flex-col items-center justify-center p-10 m-8 bg-gray-100 shadow-lg">
-				<h1 className="mb-4 text-4xl font-bold">Welcome John</h1>
-				<div className="flex flex-wrap justify-center">
-					<Link to={"/jobavailable"} className="">
-						<div className="flex flex-col items-center justify-center p-10 m-4 bg-white shadow-lg">
-							<h1 className="mb-4 text-2xl font-bold uppercase">
-								Job Available
-							</h1>
-							<p className="text-lg">Check the available jobs.</p>
-						</div>
-					</Link>
-					<Link to={"/timetable"} className="">
-						<div className="flex flex-col items-center justify-center p-10 m-4 bg-white shadow-lg">
-							<h1 className="mb-4 text-2xl font-bold uppercase">Timetable</h1>
-							<p className="text-lg">View your timetable.</p>
-						</div>
-					</Link>
-				</div>
-			</div>
-			{/* <div className="flex flex-col items-center justify-center p-10 m-8 bg-gray-100 shadow-lg">
+    return (
+        <>
+            <div className="flex flex-col items-center justify-center p-10 m-8 bg-gray-100 shadow-lg">
+                <h1 className="mb-4 text-4xl font-bold">Welcome John</h1>
+                <div className="flex flex-wrap justify-center">
+                    <Link to={"/jobavailable"} className="">
+                        <div className="flex flex-col items-center justify-center p-10 m-4 bg-white shadow-lg">
+                            <h1 className="mb-4 text-2xl font-bold uppercase">
+                                Job Available
+                            </h1>
+                            <p className="text-lg">Check the available jobs.</p>
+                        </div>
+                    </Link>
+                    <Link to={"/timetable"} className="">
+                        <div className="flex flex-col items-center justify-center p-10 m-4 bg-white shadow-lg">
+                            <h1 className="mb-4 text-2xl font-bold uppercase">
+                                Timetable
+                            </h1>
+                            <p className="text-lg">View your timetable.</p>
+                        </div>
+                    </Link>
+                </div>
+            </div>
+            {/* <div className="flex flex-col items-center justify-center p-10 m-8 bg-gray-100 shadow-lg">
 				<div className="flex flex-row items-center justify-center">
 					<div className="flex flex-col items-center justify-center p-10 m-4 bg-white shadow-lg">
 						<h1 className="mb-4 text-2xl font-bold uppercase">
@@ -76,8 +80,8 @@ function Card() {
 					</div>
 				</div>
 			</div> */}
-		</>
-	);
+        </>
+    );
 }
 
 export default LandingSessional;
