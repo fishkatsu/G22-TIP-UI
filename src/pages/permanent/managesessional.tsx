@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import NavbarPermanent from "../../components/navbarpermanent";
 
 interface EOI {
-    eoiId: string;
-    jobRefer: string;
-    firstName: string;
-    lastName: string;
-    skills: string;
-    streetAddr: string;
-    suburb: string;
-    emailAddr: string;
+    SID: string;
+    StaffFname: string;
+    StaffLname: string;
+    Title: string;
+    Types: string;
+    Email: string;
 }
 
 export default function ManageApplication() {
@@ -22,7 +20,6 @@ export default function ManageApplication() {
                 <div className="flex flex-col">
                     <Table />
                 </div>
-                <Link to={"/viewsessional"}> Sessional Page test button</Link>
             </div>
         </>
     );
@@ -32,15 +29,23 @@ function Table() {
     const [data, setData] = useState<EOI[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:8888/showall.php")
+        fetch("http://localhost:8888/staff.php")
             .then((response) => response.json())
-            .then((data: EOI[]) => setData(data))
+            .then((data: EOI[]) => {
+                // Filter the data to show only entries with "Sessional" in the Types field
+                const filteredData = data.filter(
+                    (item) => item.Types === "Sessional"
+                );
+                setData(filteredData);
+            })
             .catch((error) => console.error("Error:", error));
     }, []);
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const buttonElement = e.target as HTMLButtonElement;
-        localStorage.setItem("jobID", buttonElement.id);
+
+    const handleClick = (jobID: string) => {
+        // Store jobID in localStorage
+        localStorage.setItem("sessID", jobID);
     };
+
     return (
         <div className="overflow-x-auto">
             <div className="p-1.5 w-full inline-block align-middle">
@@ -50,79 +55,59 @@ function Table() {
                             <tr>
                                 <th
                                     scope="col"
-                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                                 >
                                     ID
                                 </th>
                                 <th
                                     scope="col"
-                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                                 >
                                     Name
                                 </th>
                                 <th
                                     scope="col"
-                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                                 >
                                     Email
                                 </th>
                                 <th
                                     scope="col"
-                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                                 >
-                                    Field 1
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                                >
-                                    Field 2
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                                >
-                                    Field 3
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                                >
-                                    Field 4
+                                    Title
                                 </th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {data.map((item) => (
-                                <tr key={item.eoiId}>
+                                <tr key={item.SID}>
                                     <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        {item.eoiId}
+                                        {item.SID}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        <Link to={"/viewsessional"}>
+                                        <Link
+                                            to={{
+                                                pathname: "/viewsessional",
+                                            }}
+                                        >
                                             <button
-                                                id={item.eoiId}
-                                                onClick={handleClick}
                                                 className="hover:underline"
+                                                onClick={(e) =>
+                                                    handleClick(item.SID)
+                                                }
+                                                id={item.SID}
                                             >
-                                                {item.firstName}
+                                                {item.StaffFname}{" "}
+                                                {item.StaffLname}
                                             </button>
                                         </Link>
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.emailAddr}
+                                        {item.Email}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.lastName}
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.skills}
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.streetAddr}
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.suburb}
+                                        {item.Title}
                                     </td>
                                 </tr>
                             ))}

@@ -7,7 +7,7 @@ import LandingPermanent from "../pages/permanent/landingpermanent";
 import ManageApplication from "../pages/permanent/manageapplication";
 // import ManagePublish from "../pages/permanent/managepublish";
 import ManageSessional from "../pages/permanent/managesessional";
-import ViewSessional from "../pages/permanent/viewsessional";
+import ViewSessional from "../pages/permanent/viewsessionalapply";
 import PublishRequest from "../pages/permanent/publishrequest";
 
 const PermanentRoutes = () => {

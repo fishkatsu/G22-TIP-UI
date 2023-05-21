@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavbarPermanent from "../../components/navbarpermanent";
 
-// https://larainfo.com/blogs/react-tailwind-css-table-example
-
-interface Applications {
+interface Application {
     applyNum: string;
     jobrefNum: string;
     firstname: string;
@@ -18,6 +16,7 @@ interface Applications {
     phone: string;
     email: string;
     availability: string;
+    status: string;
 }
 
 function ManageApplication() {
@@ -28,10 +27,9 @@ function ManageApplication() {
                 <h1 className="mb-10 text-4xl font-bold">Manage Applicant</h1>
                 <div className="flex flex-col">
                     <TableC />
-                    <Link to={"/viewsessional"}>
-                        {" "}
+                    {/* <Link to={"/viewsessional"}>
                         Sessional Page test button
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </>
@@ -39,17 +37,37 @@ function ManageApplication() {
 }
 
 function TableC() {
-    const [data, setData] = useState<Applications[]>([]);
+    const [data, setData] = useState<Application[]>([]);
 
     useEffect(() => {
         fetch("http://localhost:8888/manageapplication.php")
             .then((response) => response.json())
-            .then((data: Applications[]) => setData(data))
+            .then((data: Application[]) => setData(data))
             .catch((error) => console.error("Error:", error));
     }, []);
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const buttonElement = e.target as HTMLButtonElement;
-        localStorage.setItem("jobID", buttonElement.id);
+
+    const handleClick = (action: string, applyNum: string, jobId: string) => {
+        // Store jobID in localStorage
+        localStorage.setItem("jobID", jobId);
+
+        // Make API call to update the status
+        fetch(
+            `http://localhost:8888/updatestatus.php?action=${action}&applyNum=${applyNum}`
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response as needed
+                console.log(data);
+                if (action === "accept") {
+                    alert("Application accepted");
+                } else if (action === "decline") {
+                    alert("Application rejected");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                // Handle error case
+            });
     };
 
     return (
@@ -93,13 +111,13 @@ function TableC() {
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
-                                    status
+                                    whattofill
                                 </th>
                                 <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
-                                    Field 4
+                                    Status
                                 </th>
                                 <th
                                     scope="col"
@@ -122,11 +140,17 @@ function TableC() {
                                         {item.applyNum}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        <Link to={"/viewsessional"}>
+                                        <Link to={"/viewsessionalapply"}>
                                             <button
-                                                id={item.applyNum}
-                                                onClick={handleClick}
                                                 className="hover:underline"
+                                                onClick={(e) =>
+                                                    handleClick(
+                                                        "",
+                                                        item.applyNum,
+                                                        e.currentTarget.id
+                                                    )
+                                                }
+                                                id={item.applyNum}
                                             >
                                                 {item.jobrefNum}
                                             </button>
@@ -145,21 +169,36 @@ function TableC() {
                                         {item.suburb}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.state}
+                                        {item.status}
                                     </td>
                                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                        <Link to="/">
-                                            <button className="w-full p-1 text-white bg-green-500 rounded shadow-lg text-m hover:bg-green-700">
-                                                Accept
-                                            </button>
-                                        </Link>
+                                        <button
+                                            className="w-full p-1 text-white bg-green-500 rounded shadow-lg text-m hover:bg-green-700"
+                                            id={item.applyNum}
+                                            onClick={(e) =>
+                                                handleClick(
+                                                    "accept",
+                                                    item.applyNum,
+                                                    e.currentTarget.id
+                                                )
+                                            }
+                                        >
+                                            Accept
+                                        </button>
                                     </td>
                                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                        <Link to="/">
-                                            <button className="w-full p-1 text-white bg-red-500 rounded shadow-lg text-m hover:bg-red-700">
-                                                Decline
-                                            </button>
-                                        </Link>
+                                        <button
+                                            className="w-full p-1 text-white bg-red-500 rounded shadow-lg text-m hover:bg-red-700"
+                                            onClick={(e) =>
+                                                handleClick(
+                                                    "decline",
+                                                    item.applyNum,
+                                                    e.currentTarget.id
+                                                )
+                                            }
+                                        >
+                                            Decline
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
@@ -171,4 +210,5 @@ function TableC() {
         </div>
     );
 }
+
 export default ManageApplication;

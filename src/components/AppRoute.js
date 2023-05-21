@@ -13,14 +13,16 @@ import Availability from "../pages/sessional/availability";
 
 import LandingPermanent from "../pages/permanent/landingpermanent";
 import ManageApplication from "../pages/permanent/manageapplication";
-// import ManagePublish from "../pages/permanent/managepublish";
+import ViewSessionalapply from "../pages/permanent/viewsessionalapply";
 import ManageSessional from "../pages/permanent/managesessional";
 import ViewSessional from "../pages/permanent/viewsessional";
 import PublishRequest from "../pages/permanent/publishrequest";
-import Logout from "./logout";
 import NavbarPermanent from "./navbarpermanent";
 import NavbarSessional from "./navbarsessional";
 import JobAvailableSessional from "../pages/sessional/jobavailablesessional";
+// import ManagePublish from "../pages/permanent/managepublish";
+
+import Logout from "./logout";
 
 const AppRoutes = () => {
     return (
@@ -60,6 +62,10 @@ const AppRoutes = () => {
                 {/* <Route path="/managepublish" element={<ManagePublish />} /> */}
                 <Route path="/publishrequest" element={<PublishRequest />} />
                 <Route path="/managesessional" element={<ManageSessional />} />
+                <Route
+                    path="/viewsessionalapply"
+                    element={<ViewSessionalapply />}
+                />
                 <Route path="/viewsessional" element={<ViewSessional />} />
                 <Route path="/logout" element={<Logout />} />
 

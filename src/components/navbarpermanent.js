@@ -49,7 +49,7 @@ const NavbarPermanent = () => {
 					</li> */}
                     <li className="p-4">
                         <Link
-                            to={"/"}
+                            to={"/logout"}
                             className="text-xl font-bold text-white uppercase text-navMenu"
                         >
                             Logout
