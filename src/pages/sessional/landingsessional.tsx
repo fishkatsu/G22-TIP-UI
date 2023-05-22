@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import NavbarSessional from "../../components/navbarsessional";
 
 function LandingSessional() {
+    const userId = localStorage.getItem("userId");
+    console.log(userId);
     return (
         <div className="">
             <NavbarSessional />

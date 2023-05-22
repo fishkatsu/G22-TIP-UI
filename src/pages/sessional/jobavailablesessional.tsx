@@ -108,7 +108,7 @@ function JobTable() {
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-800">
                                 <Link
-                                    to={"/viewsessional"}
+                                    to={"/applyjobs"}
                                     className="hover:underline hover:font-bold"
                                 >
                                     Tutor (Master Program)
@@ -133,7 +133,7 @@ function JobTable() {
                             </td>
 
                             <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                <Link to={"/applyjob"}>
+                                <Link to={"/applyjobs"}>
                                     <button
                                         id="BF01T"
                                         className="w-full p-1 font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white"
@@ -150,7 +150,7 @@ function JobTable() {
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-800">
                                 <Link
-                                    to={"/viewsessional"}
+                                    to={"/applyjobs"}
                                     className="hover:underline hover:font-bold"
                                 >
                                     Tutor (Bachelor Program)
@@ -176,7 +176,7 @@ function JobTable() {
                             </td>
 
                             <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                <Link to={"/applyjob"}>
+                                <Link to={"/applyjobs"}>
                                     <button
                                         id="CS01T"
                                         className="w-full p-1 font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white"
@@ -193,7 +193,7 @@ function JobTable() {
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-800">
                                 <Link
-                                    to={"/viewsessional"}
+                                    to={"/applyjobs"}
                                     className="hover:underline hover:font-bold"
                                 >
                                     Tutor (Bachelor Program)
@@ -219,7 +219,7 @@ function JobTable() {
                             </td>
 
                             <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                <Link to={"/applyjob"}>
+                                <Link to={"/applyjobs"}>
                                     <button
                                         id="AF01T"
                                         className="w-full p-1 font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white"
@@ -236,7 +236,7 @@ function JobTable() {
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-800">
                                 <Link
-                                    to={"/viewsessional"}
+                                    to={"/applyjobs"}
                                     className="hover:underline hover:font-bold"
                                 >
                                     Lecturer
@@ -261,7 +261,7 @@ function JobTable() {
                             </td>
 
                             <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                <Link to={"/applyjob"}>
+                                <Link to={"/applyjobs"}>
                                     <button
                                         id="S02L"
                                         className="w-full p-1 font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white"
@@ -278,7 +278,7 @@ function JobTable() {
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-800">
                                 <Link
-                                    to={"/viewsessional"}
+                                    to={"/applyjobs"}
                                     className="hover:underline hover:font-bold"
                                 >
                                     Lecturer
@@ -303,7 +303,7 @@ function JobTable() {
                             </td>
 
                             <td className="p-1 px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                <Link to={"/applyjob"}>
+                                <Link to={"/applyjobs"}>
                                     <button
                                         id="EF02L"
                                         className="w-full p-1 font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white"
@@ -320,7 +320,7 @@ function JobTable() {
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-800">
                                 <Link
-                                    to={"/viewsessional"}
+                                    to={"/applyjobs"}
                                     className="hover:underline hover:font-bold"
                                 >
                                     Lecturer
@@ -345,7 +345,7 @@ function JobTable() {
                             </td>
 
                             <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                <Link to={"/applyjob"}>
+                                <Link to={"/applyjobs"}>
                                     <button
                                         id="HS02L"
                                         className="w-full p-1 font-bold text-white bg-gray-500 rounded shadow-lg text-m hover:bg-gray-400 hover:text-white"

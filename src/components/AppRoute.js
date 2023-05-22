@@ -10,6 +10,8 @@ import Login from "../pages/public/login";
 import LandingSessional from "../pages/sessional/landingsessional";
 import Timetable from "../pages/sessional/timetable";
 import Availability from "../pages/sessional/availability";
+import JobAvailableSessional from "../pages/sessional/jobavailablesessional";
+import ApplyJobsessional from "../pages/sessional/applyjobsessional";
 
 import LandingPermanent from "../pages/permanent/landingpermanent";
 import ManageApplication from "../pages/permanent/manageapplication";
@@ -19,7 +21,6 @@ import ViewSessional from "../pages/permanent/viewsessional";
 import PublishRequest from "../pages/permanent/publishrequest";
 import NavbarPermanent from "./navbarpermanent";
 import NavbarSessional from "./navbarsessional";
-import JobAvailableSessional from "../pages/sessional/jobavailablesessional";
 // import ManagePublish from "../pages/permanent/managepublish";
 
 import Logout from "./logout";
@@ -48,6 +49,7 @@ const AppRoutes = () => {
                     path="/jobavailables"
                     element={<JobAvailableSessional />}
                 />
+                <Route path="/applyjobs" element={<ApplyJobsessional />} />
                 <Route path="/timetable" element={<Timetable />} />
                 <Route path="/availability" element={<Availability />} />
 
