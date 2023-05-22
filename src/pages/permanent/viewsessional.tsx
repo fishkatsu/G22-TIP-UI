@@ -1,14 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import NavbarPermanent from "../../components/navbarpermanent";
 
+interface School {
+    SFrom: string;
+    STo: string;
+    SName: string;
+    Qualification: string;
+}
+interface WorkExperience {
+    WFrom: string;
+    WTo: string;
+    CName: string;
+    Position: string;
+}
+
 interface Applications {
-    SID: string;
-    StaffFname: string;
-    StaffLname: string;
-    Title: string;
-    Types: string;
-    Email: string;
+    applyNum: string;
+    jobrefNum: string;
+    firstname: string;
+    lastname: string;
+    gender: string;
+    dob: string;
+    street: string;
+    suburb: string;
+    state: string;
+    postcode: string;
+    phone: string;
+    email: string;
+    availability: string;
+    status: string;
+    schools: School[];
+    WorkExperience: WorkExperience[];
 }
 
 function ViewSessional() {
@@ -17,19 +40,7 @@ function ViewSessional() {
     const [jobID, setJobID] = useState("");
 
     useEffect(() => {
-        const storedSessID = localStorage.getItem("sessID");
-        if (storedSessID) {
-            setJobID(storedSessID);
-        } else if (
-            location.state &&
-            (location.state as { sessID: string }).sessID
-        ) {
-            setJobID((location.state as { sessID: string }).sessID);
-        }
-    }, [location.state]);
-
-    useEffect(() => {
-        fetch(`http://localhost:8888/staff.php?sessID=${jobID}`)
+        fetch("http://localhost:8888/viewsessional.php")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Error: " + response.status);
@@ -38,78 +49,256 @@ function ViewSessional() {
             })
             .then((data: Applications[]) => setData(data))
             .catch((error) => console.error("Error:", error));
-        console.log(jobID);
-    }, [jobID]);
+    }, []);
+
+    useEffect(() => {
+        const storedJobID = localStorage.getItem("jobID");
+        if (storedJobID) {
+            setJobID(storedJobID);
+        } else if (
+            location.state &&
+            (location.state as { applyNum: string }).applyNum
+        ) {
+            setJobID((location.state as { applyNum: string }).applyNum);
+        }
+    }, [location.state]);
+
+    const filteredData = data.filter((item) => item.applyNum === jobID);
 
     return (
         <>
             <NavbarPermanent />
             <div className="flex flex-col p-10 m-8 shadow-lg">
                 <div className="flex flex-col">
-                    <Table data={data} jobID={jobID} />
+                    <Table data={filteredData} />
                 </div>
             </div>
         </>
     );
 }
 
-function Table({ data, jobID }: { data: Applications[]; jobID: string }) {
-    // Filter the data based on the jobID
-    const filteredData = data.filter((item) => item.SID === jobID);
+function Table({ data }: { data: Applications[] }) {
+    const handleClick = (action: string, applyNum: string, jobId: string) => {
+        // Store jobID in localStorage
+        localStorage.setItem("jobID", jobId);
+
+        // Make API call to update the status
+        fetch(
+            `http://localhost:8888/updatestatus.php?action=${action}&applyNum=${applyNum}`
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response as needed
+                console.log(data);
+                if (action === "accept") {
+                    alert("Application accepted");
+                    // Navigate to /manageapplication after user clicks "OK" on the alert box
+                    window.location.href = "/manageapplication";
+                } else if (action === "decline") {
+                    alert("Application rejected");
+                    // Navigate to /manageapplication after user clicks "OK" on the alert box
+                    window.location.href = "/manageapplication";
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                // Handle error case
+            });
+    };
 
     return (
         <div className="">
-            {filteredData.map((item) => (
-                <div key={item.SID}>
+            {data.map((item) => (
+                <div key={item.applyNum}>
                     <h1 className="mb-8 text-4xl font-bold">
-                        {item.StaffFname} {item.StaffLname}
+                        {item.firstname} {item.lastname}
                     </h1>
                     <div className="flex flex-row">
                         <div className="flex flex-col w-5/6">
                             <table className="w-full">
                                 <tbody>
                                     <tr>
-                                        <td className="w-1/4 pb-4">
+                                        <td className="w-1/4 pb-4 font-bold">
                                             Jobref No:
                                         </td>
                                         <td className="w-3/4 pb-4">
-                                            {item.SID}
+                                            {item.jobrefNum}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="w-1/4 pb-4">Email:</td>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Email:
+                                        </td>
                                         <td className="w-3/4 pb-4">
-                                            {item.Email}
+                                            {item.email}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="w-1/4 pb-4">Title:</td>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Address:
+                                        </td>
                                         <td className="w-3/4 pb-4">
-                                            {item.Title}
+                                            {item.street}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Phone No.:
+                                        </td>
+                                        <td className="w-3/4 pb-4">
+                                            {item.phone}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold align-top">
+                                            School :
+                                        </td>
+                                        <td className="w-3/4">
+                                            {item.schools.map((school) => (
+                                                <table
+                                                    key={school.SName}
+                                                    className="w-full mb-4"
+                                                >
+                                                    <tbody>
+                                                        <tr>
+                                                            <td className="w-1/4 pb-4">
+                                                                Start From:
+                                                            </td>
+                                                            <td className="w-3/4 pb-4">
+                                                                {school.SFrom}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="w-1/4 pb-4">
+                                                                End To:
+                                                            </td>
+                                                            <td className="w-3/4 pb-4">
+                                                                {school.STo}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="w-1/4 pb-4">
+                                                                School Name:
+                                                            </td>
+                                                            <td className="w-3/4 pb-4">
+                                                                {school.SName}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="w-1/4 pb-4">
+                                                                Qualification:
+                                                            </td>
+                                                            <td className="w-3/4 pb-4">
+                                                                {
+                                                                    school.Qualification
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            ))}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold align-top">
+                                            Work Experience:
+                                        </td>
+                                        <td className="w-3/4">
+                                            {item.WorkExperience?.map(
+                                                (experience) => (
+                                                    <table
+                                                        key={experience.CName}
+                                                        className="w-full"
+                                                    >
+                                                        <tbody>
+                                                            <tr>
+                                                                <td className="w-1/4 pb-4">
+                                                                    Start From:
+                                                                </td>
+                                                                <td className="w-3/4 pb-4">
+                                                                    {
+                                                                        experience.WFrom
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="w-1/4 pb-4">
+                                                                    End To:
+                                                                </td>
+                                                                <td className="w-3/4 pb-4">
+                                                                    {
+                                                                        experience.WTo
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="w-1/4 pb-4">
+                                                                    Company
+                                                                    Name:
+                                                                </td>
+                                                                <td className="w-3/4 pb-4">
+                                                                    {
+                                                                        experience.CName
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="w-1/4 pb-4">
+                                                                    Position:
+                                                                </td>
+                                                                <td className="w-3/4 pb-4">
+                                                                    {
+                                                                        experience.Position
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                )
+                                            )}
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td className="w-1/4 pb-4">Notes 1:</td>
-                                        <td className="w-3/4 pb-4">
-                                            Lorem ipsum dolor sit amet
-                                            consectetur adipisicing elit.
-                                            Quisquam, voluptatum.
+                                    {/* <tr>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Status :
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="w-1/4 pb-4">Notes 2:</td>
                                         <td className="w-3/4 pb-4">
-                                            Lorem ipsum dolor sit amet
-                                            consectetur adipisicing elit.
-                                            Quisquam, voluptatum.
+                                            {item.status}
                                         </td>
-                                    </tr>
+                                    </tr> */}
                                 </tbody>
                             </table>
                         </div>
                         <div className="flex flex-col w-1/6">
-                            <Link to={"/managesessional"}>
+                            <button
+                                className="w-full p-2 m-2 text-lg font-bold text-white bg-green-500 rounded shadow-lg hover:bg-green-500 hover:text-black"
+                                onClick={(e) =>
+                                    handleClick(
+                                        "accept",
+                                        item.applyNum,
+                                        e.currentTarget.id
+                                    )
+                                }
+                                id={item.jobrefNum}
+                            >
+                                Accept
+                            </button>
+                            <button
+                                className="w-full p-2 m-2 text-lg font-bold text-white bg-red-500 rounded shadow-lg hover:bg-red-500 hover:text-black"
+                                onClick={(e) =>
+                                    handleClick(
+                                        "decline",
+                                        item.applyNum,
+                                        e.currentTarget.id
+                                    )
+                                }
+                                id={item.jobrefNum}
+                            >
+                                Decline
+                            </button>
+
+                            <Link to={"/manageapplication"}>
                                 <button className="w-full p-2 m-2 text-lg font-bold text-white bg-gray-500 rounded shadow-lg hover:bg-gray-500 hover:text-black">
                                     Back
                                 </button>

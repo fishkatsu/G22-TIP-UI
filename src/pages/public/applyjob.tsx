@@ -61,6 +61,8 @@ function ApplyJob() {
                     <div className="flex flex-col">
                         <ReferenceNumber handleChange={handleChange} />
                         <PersonalDetail handleChange={handleChange} />
+                        <EducationalBackground />
+                        <JobExperience />
                         <TimeAvailability data={data} setData={setData} />
                         <Password handleChange={handleChange} />
                         <Button />
@@ -343,7 +345,302 @@ function PersonalDetail({ handleChange }: { handleChange: Function }) {
         </div>
     );
 }
+function EducationalBackground() {
+    return (
+        <>
+            <div className="p-1.5 mb-8">
+                <h2 className="mb-4 text-3xl font-bold">
+                    Educational Background
+                </h2>
+                <div className="border">
+                    <div className="px-6 py-3 border rounded-lg bg-gray-50">
+                        <div className="flex flex-wrap">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Start from
+                            </label>
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Graduate At
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Name of Educational Institution
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Qualification
+                            </label>
+                        </div>
+                    </div>
+                    <div className="px-6 py-3 border">
+                        <div className="flex flex-wrap my-2 mb-6">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    maxLength={60}
+                                    placeholder="Enter name of the education institution"
+                                    className="w-11/12 p-2 mr-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    maxLength={60}
+                                    placeholder="Enter Qualification"
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                        </div>
+                        <div className="flex flex-wrap my-2">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    maxLength={60}
+                                    placeholder="Enter name of the education institution"
+                                    className="w-11/12 p-2 mr-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    maxLength={60}
+                                    placeholder="Enter Qualification"
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
 
+function JobExperience() {
+    return (
+        <>
+            <div className="p-1.5 mb-8">
+                <h2 className="mb-4 text-3xl font-bold">Job Experience</h2>
+                <div className="border">
+                    <div className="px-6 py-3 border rounded-lg bg-gray-50">
+                        <div className="flex flex-wrap">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Employed from
+                            </label>
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Left at
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Name of Organisation
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Position
+                            </label>
+                        </div>
+                    </div>
+                    <div className="px-6 py-3 border">
+                        <div className="flex flex-wrap my-2 mb-6">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    maxLength={60}
+                                    placeholder="Enter name of the organisation"
+                                    className="w-11/12 p-2 mr-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    maxLength={60}
+                                    placeholder="Enter position"
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                        </div>
+                        <div className="flex flex-wrap my-2">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    maxLength={60}
+                                    placeholder="Enter name of the organisation"
+                                    className="w-11/12 p-2 mr-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    maxLength={60}
+                                    placeholder="Enter position"
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+function ProfRecognition() {
+    const [rows, setRows] = useState([{ id: 1 }]);
+
+    const addRow = () => {
+        const newRow = { id: rows.length + 1 };
+        setRows([...rows, newRow]);
+    };
+
+    const deleteRow = () => {
+        const updatedRows = [...rows];
+        updatedRows.pop();
+        setRows(updatedRows);
+    };
+
+    return (
+        <>
+            <div className="p-1.5 mb-8">
+                <h2 className="mb-4 text-3xl font-bold">
+                    Professional Recognition
+                </h2>
+                <div className="border">
+                    <div className="px-6 py-3 border rounded-lg bg-gray-50">
+                        <div className="flex flex-wrap">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Start from
+                            </label>
+
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Name of Educational Institution
+                            </label>
+                            <label className="w-3/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Qualification
+                            </label>
+                        </div>
+                    </div>
+                    {rows.map((row) => (
+                        <div className="px-6 py-3 border" key={row.id}>
+                            <div className="flex flex-wrap my-2">
+                                <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                    <input
+                                        type="text"
+                                        id={`EdYearFrom${row.id}`}
+                                        pattern="\d{1,2}\/\d{4}"
+                                        placeholder="MM/YYYY"
+                                        maxLength={7}
+                                        className="w-11/12 p-2 border border-gray-400"
+                                    />
+                                </label>
+
+                                <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                    <input
+                                        type="text"
+                                        id={`IssuerName${row.id}`}
+                                        maxLength={60}
+                                        placeholder="Enter name of issuer"
+                                        className="w-11/12 p-2 mr-2 border border-gray-400"
+                                    />
+                                </label>
+                                <label className="w-3/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                    <input
+                                        type="text"
+                                        id={`RecognitionType${row.id}`}
+                                        maxLength={60}
+                                        placeholder="Enter types of recognition"
+                                        className="w-11/12 p-2 border border-gray-400"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="px-6 py-3 border">
+                    <div className="flex">
+                        <button
+                            onClick={addRow}
+                            className="px-4 py-2 mr-6 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
+                        >
+                            Add Row
+                        </button>
+                        <button
+                            onClick={deleteRow}
+                            className="px-4 py-2 mr-2 text-sm font-medium text-red-500 bg-transparent border border-red-500 rounded hover:bg-red-100 focus:outline-none"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
 function TimeAvailability({ data, setData }: { data: any; setData: Function }) {
     const [selectedDays, setSelectedDays] = useState<string[]>([]);
 

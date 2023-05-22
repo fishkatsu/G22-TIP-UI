@@ -34,8 +34,8 @@ if (!$conn) {
                 'email' => $row['email'],
                 'availability' => $row['availability'],
                 'status' => $row['status'],
-                'Title' => $row['Title'],
-                'schools' => array() // Initialize an empty array to store school entries
+                'schools' => array(), // Initialize an empty array to store school entries
+                'WorkExperience' => array() // Initialize an empty array to store work experience entries
             );
 
             $schoolQuery = "SELECT * FROM school WHERE applyNum = '" . $row['applyNum'] . "'";
@@ -56,7 +56,25 @@ if (!$conn) {
                 echo json_encode(array('error' => 'Error executing school query'));
                 exit;
             }
+            
+            $workQuery = "SELECT * FROM WorkExperience WHERE applyNum = '" . $row['applyNum'] . "'";
+            $workResult = mysqli_query($conn, $workQuery);
 
+            if ($workResult) {
+                while ($workRow = mysqli_fetch_assoc($workResult)) {
+                    $workEntry = array(
+                        'WFrom' => $workRow['WFrom'],
+                        'WTo' => $workRow['WTo'],
+                        'CName' => $workRow['CName'],
+                        'Position' => $workRow['Position'],
+                    );
+                    $application['WorkExperience'][] = $workEntry;
+                }
+                mysqli_free_result($workResult);
+            } else {
+                echo json_encode(array('error' => 'Error executing work query'));
+                exit;
+            }
             
             $applications[] = $application;
         }
@@ -67,3 +85,4 @@ if (!$conn) {
     mysqli_free_result($result);
     mysqli_close($conn);
 }
+?>

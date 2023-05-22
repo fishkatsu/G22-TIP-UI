@@ -2,6 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import NavbarPermanent from "../../components/navbarpermanent";
 
+interface School {
+    SFrom: string;
+    STo: string;
+    SName: string;
+    Qualification: string;
+}
+interface WorkExperience {
+    WFrom: string;
+    WTo: string;
+    CName: string;
+    Position: string;
+}
+
 interface Applications {
     applyNum: string;
     jobrefNum: string;
@@ -17,6 +30,8 @@ interface Applications {
     email: string;
     availability: string;
     status: string;
+    schools: School[];
+    WorkExperience: WorkExperience[];
 }
 
 function ViewSessionalapply() {
@@ -25,7 +40,7 @@ function ViewSessionalapply() {
     const [jobID, setJobID] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:8888/manageapplication.php")
+        fetch("http://localhost:8888/viewsessional.php")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Error: " + response.status);
@@ -101,60 +116,158 @@ function Table({ data }: { data: Applications[] }) {
                     <div className="flex flex-row">
                         <div className="flex flex-col w-5/6">
                             <table className="w-full">
-                                <tr>
-                                    <td className="w-1/4 pb-4">Jobref No:</td>
-                                    <td className="w-3/4 pb-4">
-                                        {item.jobrefNum}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="w-1/4 pb-4">Email:</td>
-                                    <td className="w-3/4 pb-4">{item.email}</td>
-                                </tr>
-                                <tr>
-                                    <td className="w-1/4 pb-4">Address:</td>
-                                    <td className="w-3/4 pb-4">
-                                        {item.street}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="w-1/4 pb-4">Phone No.:</td>
-                                    <td className="w-3/4 pb-4">{item.phone}</td>
-                                </tr>
-                                <tr>
-                                    <td className="w-1/4 pb-4">Skill:</td>
-                                    <td className="w-3/4 pb-4">
-                                        {item.postcode}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="w-1/4 pb-4">Notes 1:</td>
-                                    <td className="w-3/4 pb-4">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Quisquam, voluptatum.
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Quisquam, voluptatum.
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Quisquam, voluptatum.
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Quisquam, voluptatum.
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Quisquam, voluptatum.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="w-1/4 pb-4">Notes 2:</td>
-                                    <td className="w-3/4 pb-4">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Quisquam, voluptatum.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="w-1/4 pb-4">Status :</td>
-                                    <td className="w-3/4 pb-4">
-                                        {item.status}
-                                    </td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Jobref No:
+                                        </td>
+                                        <td className="w-3/4 pb-4">
+                                            {item.jobrefNum}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Email:
+                                        </td>
+                                        <td className="w-3/4 pb-4">
+                                            {item.email}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Address:
+                                        </td>
+                                        <td className="w-3/4 pb-4">
+                                            {item.street}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Phone No:
+                                        </td>
+                                        <td className="w-3/4 pb-4">
+                                            {item.phone}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold align-top">
+                                            School :
+                                        </td>
+                                        <td className="w-3/4">
+                                            {item.schools.map((school) => (
+                                                <table
+                                                    key={school.SName}
+                                                    className="w-full mb-4"
+                                                >
+                                                    <tbody>
+                                                        <tr>
+                                                            <td className="w-1/4 pb-4">
+                                                                Start From:
+                                                            </td>
+                                                            <td className="w-3/4 pb-4">
+                                                                {school.SFrom}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="w-1/4 pb-4">
+                                                                End To:
+                                                            </td>
+                                                            <td className="w-3/4 pb-4">
+                                                                {school.STo}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="w-1/4 pb-4">
+                                                                School Name:
+                                                            </td>
+                                                            <td className="w-3/4 pb-4">
+                                                                {school.SName}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="w-1/4 pb-4">
+                                                                Qualification:
+                                                            </td>
+                                                            <td className="w-3/4 pb-4">
+                                                                {
+                                                                    school.Qualification
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            ))}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold align-top">
+                                            Work Experience:
+                                        </td>
+                                        <td className="w-3/4">
+                                            {item.WorkExperience?.map(
+                                                (experience) => (
+                                                    <table
+                                                        key={experience.CName}
+                                                        className="w-full"
+                                                    >
+                                                        <tbody>
+                                                            <tr>
+                                                                <td className="w-1/4 pb-4">
+                                                                    Start From:
+                                                                </td>
+                                                                <td className="w-3/4 pb-4">
+                                                                    {
+                                                                        experience.WFrom
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="w-1/4 pb-4">
+                                                                    End To:
+                                                                </td>
+                                                                <td className="w-3/4 pb-4">
+                                                                    {
+                                                                        experience.WTo
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="w-1/4 pb-4">
+                                                                    Company
+                                                                    Name:
+                                                                </td>
+                                                                <td className="w-3/4 pb-4">
+                                                                    {
+                                                                        experience.CName
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="w-1/4 pb-4">
+                                                                    Position:
+                                                                </td>
+                                                                <td className="w-3/4 pb-4">
+                                                                    {
+                                                                        experience.Position
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                )
+                                            )}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Status
+                                        </td>
+                                        <td className="w-3/4 pb-4">
+                                            {item.status}
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                         <div className="flex flex-col w-1/6">
@@ -167,6 +280,7 @@ function Table({ data }: { data: Applications[] }) {
                                         e.currentTarget.id
                                     )
                                 }
+                                id={item.jobrefNum}
                             >
                                 Accept
                             </button>
@@ -179,6 +293,7 @@ function Table({ data }: { data: Applications[] }) {
                                         e.currentTarget.id
                                     )
                                 }
+                                id={item.jobrefNum}
                             >
                                 Decline
                             </button>
@@ -195,4 +310,5 @@ function Table({ data }: { data: Applications[] }) {
         </div>
     );
 }
+
 export default ViewSessionalapply;

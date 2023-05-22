@@ -42,7 +42,16 @@ function TableC() {
     useEffect(() => {
         fetch("http://localhost:8888/manageapplication.php")
             .then((response) => response.json())
-            .then((data: Application[]) => setData(data))
+            .then((data: Application[]) => {
+                // Filter the data array based on status
+                const filteredData = data.filter(
+                    (item) =>
+                        item.status === "New" ||
+                        item.status === "Accepted" ||
+                        item.status === "Rejected"
+                );
+                setData(filteredData);
+            })
             .catch((error) => console.error("Error:", error));
     }, []);
 
