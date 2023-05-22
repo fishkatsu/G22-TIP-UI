@@ -2,6 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavbarPublic from "../../components/navbarpublic";
 
+interface EducationalBackgrounds {
+    start: string;
+    end: string;
+    institution: string;
+    qualification: string;
+}
+interface WorkExperience {
+    WFrom: string;
+    WTo: string;
+    CName: string;
+    Position: string;
+}
+
 function ApplyJob() {
     const [formData, setFormData] = useState({
         jobrefNum: "",
@@ -19,23 +32,74 @@ function ApplyJob() {
     });
     const [data, setData] = useState({
         timeAvailability: [],
+        educationalBackground: [] as EducationalBackgrounds[],
     });
-    const handleSubmit = (event: React.FormEvent) => {
+
+    const [education1, setEducation1] = useState<EducationalBackgrounds>({
+        start: "",
+        end: "",
+        institution: "",
+        qualification: "",
+    });
+    const [education2, setEducation2] = useState<EducationalBackgrounds>({
+        start: "",
+        end: "",
+        institution: "",
+        qualification: "",
+    });
+    const [workExperience1, setWorkExperience1] = useState<WorkExperience>({
+        WFrom: "",
+        WTo: "",
+        CName: "",
+        Position: "",
+    });
+    const [workExperience2, setWorkExperience2] = useState<WorkExperience>({
+        WFrom: "",
+        WTo: "",
+        CName: "",
+        Position: "",
+    });
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        // Make the HTTP POST request to the PHP script
+        const updatedFormData = {
+            jobrefNum: formData.jobrefNum,
+            firstname: formData.firstname,
+            lastname: formData.lastname,
+            gender: formData.gender,
+            dob: formData.dob,
+            street: formData.street,
+            suburb: formData.suburb,
+            state: formData.state,
+            postcode: formData.postcode,
+            phone: formData.phone,
+            email: formData.email,
+            password: formData.password,
+            educationalBackground: [education1, education2],
+            workExperience: [workExperience1, workExperience2],
+        };
+        console.log("Education 1:", education1);
+        console.log("Education 2:", education2);
+        console.log("Work Experience 1:", workExperience1);
+        console.log("Work Experience 2:", workExperience2);
+
+        // console.log("test", updatedFormData.educationalBackground);
+
         fetch("http://localhost:8888/storedata.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                ...formData,
-                timeAvailability: data.timeAvailability,
-            }),
+            body: JSON.stringify(updatedFormData),
         })
             .then((response) => response.text())
             .then((data) => {
+                // console.log("Education 1:", education1);
+                // console.log("Education 2:", education2);
+                // console.log("Work Experience 1:", workExperience1);
+                // console.log("Work Experience 2:", workExperience2);
+
                 console.log(data); // Application submitted successfully or error message
                 // Optionally, you can redirect the user to a success page or perform any other action
             })
@@ -61,14 +125,204 @@ function ApplyJob() {
                     <div className="flex flex-col">
                         <ReferenceNumber handleChange={handleChange} />
                         <PersonalDetail handleChange={handleChange} />
-                        <EducationalBackground />
-                        <JobExperience />
+                        <EducationalBackground
+                            data={data}
+                            setData={setData}
+                            education1={education1}
+                            setEducation1={setEducation1}
+                            education2={education2}
+                            setEducation2={setEducation2}
+                        />
+                        <JobExperience
+                            data={data}
+                            setData={setData}
+                            workExperience1={workExperience1}
+                            setworkExperience1={setWorkExperience1}
+                            workExperience2={workExperience2}
+                            setworkExperience2={setWorkExperience2}
+                        />
                         <TimeAvailability data={data} setData={setData} />
                         <Password handleChange={handleChange} />
                         <Button />
                     </div>
                 </div>
             </form>
+        </>
+    );
+}
+
+function Button() {
+    return (
+        <div className="p-1.5">
+            <button
+                type="submit"
+                className="px-10 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+                Submit
+            </button>
+            <Link
+                to="/"
+                className="px-10 py-2 ml-5 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+            >
+                Cancel
+            </Link>
+        </div>
+    );
+}
+
+function EducationalBackground({
+    data,
+    setData,
+    education1,
+    setEducation1,
+    education2,
+    setEducation2,
+}: {
+    data: any;
+    setData: Function;
+    education1: EducationalBackgrounds;
+    setEducation1: (data: EducationalBackgrounds) => void;
+    education2: EducationalBackgrounds;
+    setEducation2: (data: EducationalBackgrounds) => void;
+}) {
+    const handleEducation1Change = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const { name, value } = event.target;
+        setEducation1({ ...education1, [name]: value });
+    };
+
+    const handleEducation2Change = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const { name, value } = event.target;
+        setEducation2({ ...education2, [name]: value });
+    };
+    // console.log("Education 1:", education1);
+    // console.log("Education 2:", education2);
+    return (
+        <>
+            <div className="p-1.5 mb-8">
+                <h2 className="mb-4 text-3xl font-bold">
+                    Educational Background
+                </h2>
+                <div className="border">
+                    <div className="px-6 py-3 border rounded-lg bg-gray-50">
+                        <div className="flex flex-wrap">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Start from
+                            </label>
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Graduate At
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Name of Educational Institution
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                Qualification
+                            </label>
+                        </div>
+                    </div>
+                    <div className="px-6 py-3 border">
+                        <div className="flex flex-wrap my-2 mb-6">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    name="start"
+                                    value={education1.start}
+                                    onChange={handleEducation1Change}
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    name="end"
+                                    value={education1.end}
+                                    onChange={handleEducation1Change}
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    name="institution"
+                                    value={education1.institution}
+                                    onChange={handleEducation1Change}
+                                    maxLength={60}
+                                    placeholder="Enter name of the education institution"
+                                    className="w-11/12 p-2 mr-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    name="qualification"
+                                    value={education1.qualification}
+                                    onChange={handleEducation1Change}
+                                    maxLength={60}
+                                    placeholder="Enter Qualification"
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                        </div>
+                        <div className="flex flex-wrap my-2">
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    name="start"
+                                    value={education2.start}
+                                    onChange={handleEducation2Change}
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    name="end"
+                                    value={education2.end}
+                                    onChange={handleEducation2Change}
+                                    pattern="\d{1,2}\/\d{4}"
+                                    placeholder="MM/YYYY"
+                                    maxLength={7}
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    name="institution"
+                                    value={education2.institution}
+                                    onChange={handleEducation2Change}
+                                    maxLength={60}
+                                    placeholder="Enter name of the education institution"
+                                    className="w-11/12 p-2 mr-2 border border-gray-400"
+                                />
+                            </label>
+                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
+                                <input
+                                    type="text"
+                                    name="qualification"
+                                    value={education2.qualification}
+                                    onChange={handleEducation2Change}
+                                    maxLength={60}
+                                    placeholder="Enter Qualification"
+                                    className="w-11/12 p-2 border border-gray-400"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
@@ -345,111 +599,35 @@ function PersonalDetail({ handleChange }: { handleChange: Function }) {
         </div>
     );
 }
-function EducationalBackground() {
-    return (
-        <>
-            <div className="p-1.5 mb-8">
-                <h2 className="mb-4 text-3xl font-bold">
-                    Educational Background
-                </h2>
-                <div className="border">
-                    <div className="px-6 py-3 border rounded-lg bg-gray-50">
-                        <div className="flex flex-wrap">
-                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                Start from
-                            </label>
-                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                Graduate At
-                            </label>
-                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                Name of Educational Institution
-                            </label>
-                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                Qualification
-                            </label>
-                        </div>
-                    </div>
-                    <div className="px-6 py-3 border">
-                        <div className="flex flex-wrap my-2 mb-6">
-                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                <input
-                                    type="text"
-                                    pattern="\d{1,2}\/\d{4}"
-                                    placeholder="MM/YYYY"
-                                    maxLength={7}
-                                    className="w-11/12 p-2 border border-gray-400"
-                                />
-                            </label>
-                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                <input
-                                    type="text"
-                                    pattern="\d{1,2}\/\d{4}"
-                                    placeholder="MM/YYYY"
-                                    maxLength={7}
-                                    className="w-11/12 p-2 border border-gray-400"
-                                />
-                            </label>
-                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                <input
-                                    type="text"
-                                    maxLength={60}
-                                    placeholder="Enter name of the education institution"
-                                    className="w-11/12 p-2 mr-2 border border-gray-400"
-                                />
-                            </label>
-                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                <input
-                                    type="text"
-                                    maxLength={60}
-                                    placeholder="Enter Qualification"
-                                    className="w-11/12 p-2 border border-gray-400"
-                                />
-                            </label>
-                        </div>
-                        <div className="flex flex-wrap my-2">
-                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                <input
-                                    type="text"
-                                    pattern="\d{1,2}\/\d{4}"
-                                    placeholder="MM/YYYY"
-                                    maxLength={7}
-                                    className="w-11/12 p-2 border border-gray-400"
-                                />
-                            </label>
-                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                <input
-                                    type="text"
-                                    pattern="\d{1,2}\/\d{4}"
-                                    placeholder="MM/YYYY"
-                                    maxLength={7}
-                                    className="w-11/12 p-2 border border-gray-400"
-                                />
-                            </label>
-                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                <input
-                                    type="text"
-                                    maxLength={60}
-                                    placeholder="Enter name of the education institution"
-                                    className="w-11/12 p-2 mr-2 border border-gray-400"
-                                />
-                            </label>
-                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                <input
-                                    type="text"
-                                    maxLength={60}
-                                    placeholder="Enter Qualification"
-                                    className="w-11/12 p-2 border border-gray-400"
-                                />
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-}
 
-function JobExperience() {
+function JobExperience({
+    data,
+    setData,
+    workExperience1,
+    setworkExperience1,
+    workExperience2,
+    setworkExperience2,
+}: {
+    data: any;
+    setData: any;
+    workExperience1: any;
+    setworkExperience1: any;
+    workExperience2: any;
+    setworkExperience2: any;
+}) {
+    const handleWorkExperience1Change = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const { name, value } = event.target;
+        setworkExperience1({ ...workExperience1, [name]: value });
+    };
+
+    const handleWorkExperience2Change = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const { name, value } = event.target;
+        setworkExperience2({ ...workExperience2, [name]: value });
+    };
     return (
         <>
             <div className="p-1.5 mb-8">
@@ -476,6 +654,9 @@ function JobExperience() {
                             <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
                                 <input
                                     type="text"
+                                    name="WFrom"
+                                    value={workExperience1.WFrom}
+                                    onChange={handleWorkExperience1Change}
                                     pattern="\d{1,2}\/\d{4}"
                                     placeholder="MM/YYYY"
                                     maxLength={7}
@@ -485,6 +666,9 @@ function JobExperience() {
                             <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
                                 <input
                                     type="text"
+                                    name="WTo"
+                                    value={workExperience1.WTo}
+                                    onChange={handleWorkExperience1Change}
                                     pattern="\d{1,2}\/\d{4}"
                                     placeholder="MM/YYYY"
                                     maxLength={7}
@@ -494,6 +678,9 @@ function JobExperience() {
                             <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
                                 <input
                                     type="text"
+                                    name="CName"
+                                    value={workExperience1.CName}
+                                    onChange={handleWorkExperience1Change}
                                     maxLength={60}
                                     placeholder="Enter name of the organisation"
                                     className="w-11/12 p-2 mr-2 border border-gray-400"
@@ -502,6 +689,9 @@ function JobExperience() {
                             <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
                                 <input
                                     type="text"
+                                    name="Position"
+                                    value={workExperience1.Position}
+                                    onChange={handleWorkExperience1Change}
                                     maxLength={60}
                                     placeholder="Enter position"
                                     className="w-11/12 p-2 border border-gray-400"
@@ -512,6 +702,9 @@ function JobExperience() {
                             <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
                                 <input
                                     type="text"
+                                    name="WFrom"
+                                    value={workExperience2.WFrom}
+                                    onChange={handleWorkExperience2Change}
                                     pattern="\d{1,2}\/\d{4}"
                                     placeholder="MM/YYYY"
                                     maxLength={7}
@@ -521,6 +714,9 @@ function JobExperience() {
                             <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
                                 <input
                                     type="text"
+                                    name="WTo"
+                                    value={workExperience2.WTo}
+                                    onChange={handleWorkExperience2Change}
                                     pattern="\d{1,2}\/\d{4}"
                                     placeholder="MM/YYYY"
                                     maxLength={7}
@@ -530,6 +726,9 @@ function JobExperience() {
                             <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
                                 <input
                                     type="text"
+                                    name="CName"
+                                    value={workExperience2.CName}
+                                    onChange={handleWorkExperience2Change}
                                     maxLength={60}
                                     placeholder="Enter name of the organisation"
                                     className="w-11/12 p-2 mr-2 border border-gray-400"
@@ -538,6 +737,9 @@ function JobExperience() {
                             <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
                                 <input
                                     type="text"
+                                    name="Position"
+                                    value={workExperience2.Position}
+                                    onChange={handleWorkExperience2Change}
                                     maxLength={60}
                                     placeholder="Enter position"
                                     className="w-11/12 p-2 border border-gray-400"
@@ -550,97 +752,7 @@ function JobExperience() {
         </>
     );
 }
-function ProfRecognition() {
-    const [rows, setRows] = useState([{ id: 1 }]);
 
-    const addRow = () => {
-        const newRow = { id: rows.length + 1 };
-        setRows([...rows, newRow]);
-    };
-
-    const deleteRow = () => {
-        const updatedRows = [...rows];
-        updatedRows.pop();
-        setRows(updatedRows);
-    };
-
-    return (
-        <>
-            <div className="p-1.5 mb-8">
-                <h2 className="mb-4 text-3xl font-bold">
-                    Professional Recognition
-                </h2>
-                <div className="border">
-                    <div className="px-6 py-3 border rounded-lg bg-gray-50">
-                        <div className="flex flex-wrap">
-                            <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                Start from
-                            </label>
-
-                            <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                Name of Educational Institution
-                            </label>
-                            <label className="w-3/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                Qualification
-                            </label>
-                        </div>
-                    </div>
-                    {rows.map((row) => (
-                        <div className="px-6 py-3 border" key={row.id}>
-                            <div className="flex flex-wrap my-2">
-                                <label className="w-1/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                    <input
-                                        type="text"
-                                        id={`EdYearFrom${row.id}`}
-                                        pattern="\d{1,2}\/\d{4}"
-                                        placeholder="MM/YYYY"
-                                        maxLength={7}
-                                        className="w-11/12 p-2 border border-gray-400"
-                                    />
-                                </label>
-
-                                <label className="w-2/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                    <input
-                                        type="text"
-                                        id={`IssuerName${row.id}`}
-                                        maxLength={60}
-                                        placeholder="Enter name of issuer"
-                                        className="w-11/12 p-2 mr-2 border border-gray-400"
-                                    />
-                                </label>
-                                <label className="w-3/6 text-xs font-bold text-left text-gray-500 uppercase">
-                                    <input
-                                        type="text"
-                                        id={`RecognitionType${row.id}`}
-                                        maxLength={60}
-                                        placeholder="Enter types of recognition"
-                                        className="w-11/12 p-2 border border-gray-400"
-                                    />
-                                </label>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <div className="px-6 py-3 border">
-                    <div className="flex">
-                        <button
-                            onClick={addRow}
-                            className="px-4 py-2 mr-6 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
-                        >
-                            Add Row
-                        </button>
-                        <button
-                            onClick={deleteRow}
-                            className="px-4 py-2 mr-2 text-sm font-medium text-red-500 bg-transparent border border-red-500 rounded hover:bg-red-100 focus:outline-none"
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-}
 function TimeAvailability({ data, setData }: { data: any; setData: Function }) {
     const [selectedDays, setSelectedDays] = useState<string[]>([]);
 
@@ -725,7 +837,6 @@ function TimeAvailability({ data, setData }: { data: any; setData: Function }) {
                     </div>
                 </div>
             </div>
-            {/* <button onClick={handleSubmit}>Submit</button> */}
         </>
     );
 }
@@ -750,25 +861,6 @@ function Password({ handleChange }: { handleChange: Function }) {
                 </div>
             </div>
         </>
-    );
-}
-
-function Button() {
-    return (
-        <div className="p-1.5">
-            <button
-                type="submit"
-                className="px-10 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-            >
-                Submit
-            </button>
-            <Link
-                to="/"
-                className="px-10 py-2 ml-5 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-            >
-                Cancel
-            </Link>
-        </div>
     );
 }
 
