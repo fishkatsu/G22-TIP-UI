@@ -30,10 +30,10 @@ function LoginForm() {
                 const userId = data.userId; // Retrieve the userId from the response
 
                 if (response === "permanent") {
-                    sessionStorage.setItem("userId", userId); // Store the userId in session storage
+                    localStorage.setItem("userId", userId); // Store the userId in session storage
                     navigate("/landingpermanent");
                 } else if (response === "sessional") {
-                    sessionStorage.setItem("userId", userId); // Store the userId in session storage
+                    localStorage.setItem("userId", userId); // Store the userId in session storage
                     navigate("/landingsessional");
                 } else {
                     alert("You are not registered");
