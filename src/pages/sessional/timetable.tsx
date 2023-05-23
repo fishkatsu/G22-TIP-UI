@@ -41,7 +41,11 @@ function ThisWeek() {
                 alert("An error occurred. Please try again later.");
             });
     }, []);
+<<<<<<< HEAD
     // console.log(timetableData.map((row) => row.date));
+=======
+console.log(localStorage.getItem("userId"));
+>>>>>>> 536b2d811fd2d267443306337b882bf371709a88
     return (
         <div>
             {/* <p className="mb-4 text-2xl font-bold">Next 7 days</p> */}
