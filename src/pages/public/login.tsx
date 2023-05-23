@@ -79,11 +79,11 @@ function LoginForm() {
                         Login
                     </button>
 
-                    <Link to="/register">
+                    {/* <Link to="/register">
                         <p className="w-full my-6 text-xs font-bold tracking-widest text-center text-gray-500 underline">
                             Don't have an account? Register here.
                         </p>
-                    </Link>
+                    </Link> */}
                     <Link to={"/landingpermanent"}>permanent</Link>
                     <Link to={"/landingsessional"}>
                         <p>sessional</p>

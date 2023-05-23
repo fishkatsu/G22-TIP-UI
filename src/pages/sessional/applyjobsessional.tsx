@@ -63,10 +63,9 @@ function ApplyJobsessional() {
 // };
 
 function PersonalDetail() {
-    const [data, setData] = useState<Applications | null>(null);
-
     console.log("PD anything:", localStorage.getItem("userId"));
 
+    const [data, setData] = useState<Applications | null>(null);
     useEffect(() => {
         // Pass the applyNum value as a query parameter in the fetch URL
         const applyNum = localStorage.getItem("userId"); // Replace with the desired applyNum value
@@ -83,6 +82,7 @@ function PersonalDetail() {
                 alert("An error occurred. Please try again later.");
             });
     }, []);
+
     return (
         <div className="p-1.5">
             {data ? (
