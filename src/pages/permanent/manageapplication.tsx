@@ -116,12 +116,12 @@ function TableC() {
                                 >
                                     Email Address
                                 </th>
-                                <th
+                                {/* <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
                                     whattofill
-                                </th>
+                                </th> */}
                                 <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
@@ -148,7 +148,7 @@ function TableC() {
                                     <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
                                         {item.applyNum}
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                                    <td className="px-6 py-4 text-sm font-bold text-gray-800 whitespace-nowrap">
                                         <Link to={"/viewsessionalapply"}>
                                             <button
                                                 className="hover:underline"
@@ -174,9 +174,9 @@ function TableC() {
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.email}
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                                    {/* <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.suburb}
-                                    </td>
+                                    </td> */}
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.status}
                                     </td>
