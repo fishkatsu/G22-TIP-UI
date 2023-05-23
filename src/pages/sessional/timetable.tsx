@@ -41,7 +41,7 @@ function ThisWeek() {
                 alert("An error occurred. Please try again later.");
             });
     }, []);
-
+console.log(localStorage.getItem("userId"));
     return (
         <div>
             {/* <p className="mb-4 text-2xl font-bold">Next 7 days</p> */}
