@@ -97,6 +97,12 @@ function TableC() {
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
+                                    Job Ref Number
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                                >
                                     Name
                                 </th>
                                 <th
@@ -104,12 +110,6 @@ function TableC() {
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                 >
                                     Email Address
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                                >
-                                    Title
                                 </th>
                             </tr>
                         </thead>
@@ -132,15 +132,15 @@ function TableC() {
                                                 }
                                                 id={item.applyNum}
                                             >
-                                                {item.firstname} {item.lastname}
+                                                {item.jobrefNum}
                                             </button>
                                         </Link>
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.email}
+                                        {item.firstname} {item.lastname}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.Title}
+                                        {item.email}
                                     </td>
                                 </tr>
                             ))}
