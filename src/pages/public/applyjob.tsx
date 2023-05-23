@@ -99,6 +99,7 @@ function ApplyJob() {
                 // console.log("Education 2:", education2);
                 // console.log("Work Experience 1:", workExperience1);
                 // console.log("Work Experience 2:", workExperience2);
+                alert("Application submitted successfully");
 
                 console.log(data); // Application submitted successfully or error message
                 // Optionally, you can redirect the user to a success page or perform any other action
