@@ -77,10 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['CONTENT_TYPE']) && 
                     $wTo = mysqli_real_escape_string($conn, $experience['WTo']);
                     $CName = mysqli_real_escape_string($conn, $experience['CName']);
                     $Position = mysqli_real_escape_string($conn, $experience['Position']);
-                    // echo json_encode(array('$wFrom' => $wFrom));
-                    // echo json_encode(array('$wTo' => $wTo));
-                    // echo json_encode(array('$CName' => $CName));
-                    // echo json_encode(array('$Position' => $Position));
+                    echo json_encode(array('$wFrom' => $wFrom));
+                    echo json_encode(array('$wTo' => $wTo));
+                    echo json_encode(array('$CName' => $CName));
+                    echo json_encode(array('$Position' => $Position));
 
                     // Insert work experience data into the database
                     $expQuery = "INSERT INTO $sql_table_experience (applyNum, WFrom, WTo, CName, Position) VALUES ('$applicationId', '$wFrom', '$wTo', '$CName', '$Position')";

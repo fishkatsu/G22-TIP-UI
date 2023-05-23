@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import NavbarPublic from "../../components/navbarpublic";
+import NavbarSessional from "../../components/navbarsessional";
 
 interface School {
-    start: string;
-    end: string;
-    institution: string;
-    qualification: string;
+    SFrom: string;
+    STo: string;
+    SName: string;
+    Qualification: string;
 }
+
 interface WorkExperience {
     WFrom: string;
     WTo: string;
     CName: string;
     Position: string;
 }
+
 interface Applications {
     applyNum: string;
     jobrefNum: string;
@@ -32,21 +34,45 @@ interface Applications {
     schools: School[];
     WorkExperience: WorkExperience[];
 }
-interface PersonalDetailProps {
-    data: Applications;
-}
 
 function ApplyJobsessional() {
-    // console.log(localStorage.getItem("userId"));
-    // console.log(localStorage.getItem("applyNum"));
-    const location = useLocation();
-    const [data, setData] = useState<Applications[]>([]);
-    const [jobID, setJobID] = useState("");
+    return (
+        <>
+            <NavbarSessional />
+            <form>
+                <div className="flex flex-col p-10 m-8 shadow-lg">
+                    <h1 className="mb-10 text-4xl font-bold">
+                        Application Form
+                    </h1>
+                    <div className="flex flex-col">
+                        <ReferenceNumber />
+                        <PersonalDetail />
+                        <EducationalBackground />
+                        <JobExperience />
+                        {/* <TimeAvailability /> */}
+                        <Button />
+                    </div>
+                </div>
+            </form>
+        </>
+    );
+}
+
+// type PersonalDetailProps = {
+//     data: Applications;
+// };
+
+function PersonalDetail() {
+    const [data, setData] = useState<Applications | null>(null);
+
+    console.log("PD anything:", localStorage.getItem("userId"));
 
     useEffect(() => {
         // Pass the applyNum value as a query parameter in the fetch URL
         const applyNum = localStorage.getItem("userId"); // Replace with the desired applyNum value
-        fetch(`http://localhost:8888/viewsessional.php?applyNum=${applyNum}`)
+        fetch(
+            `http://localhost:8888/applyjobsessional.php?applyNum=${applyNum}`
+        )
             .then((response) => response.json())
             .then((data) => {
                 setData(data);
@@ -57,47 +83,255 @@ function ApplyJobsessional() {
                 alert("An error occurred. Please try again later.");
             });
     }, []);
-
-    useEffect(() => {
-        const storedJobID = localStorage.getItem("jobID");
-        if (storedJobID) {
-            setJobID(storedJobID);
-        } else if (
-            location.state &&
-            (location.state as { applyNum: string }).applyNum
-        ) {
-            setJobID((location.state as { applyNum: string }).applyNum);
-        }
-    }, [location.state]);
-
-    const filteredData = data.filter((item) => item.applyNum === jobID);
-    const filteredApplication =
-        filteredData.length > 0 ? filteredData[0] : null;
-
     return (
-        <>
-            <NavbarPublic />
-            <form>
-                <div className="flex flex-col p-10 m-8 shadow-lg">
-                    <h1 className="mb-10 text-4xl font-bold">
-                        Application Form
-                    </h1>
-                    <div className="flex flex-col">
-                        <ReferenceNumber />
-                        {filteredApplication && (
-                            <PersonalDetail data={filteredApplication} />
-                        )}
-                        <EducationalBackground />
-                        <JobExperience />
-                        <TimeAvailability data={data} setData={setData} />
-                        <Button />
+        <div className="p-1.5">
+            {data ? (
+                <div>
+                    <div>
+                        <h2 className="mb-8 text-3xl font-bold">
+                            Personal Detail
+                        </h2>
+                        <div className="flex flex-wrap mb-8">
+                            <div className="flex flex-wrap w-1/2">
+                                <div className="w-1/4">
+                                    <label className="text-lg font-bold">
+                                        First Name:
+                                    </label>
+                                </div>
+                                <div className="w-3/4">
+                                    <input
+                                        type="text"
+                                        id="firstname"
+                                        maxLength={20}
+                                        pattern="^[a-zA-Z]+$"
+                                        required
+                                        placeholder="First Name"
+                                        className="w-full p-2 border border-gray-400"
+                                        value={data.firstname}
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex flex-wrap w-1/2 pl-5">
+                                <div className="w-1/4">
+                                    <label className="text-lg font-bold">
+                                        Last Name:
+                                    </label>
+                                </div>
+                                <div className="w-3/4">
+                                    <input
+                                        type="text"
+                                        id="lastname"
+                                        maxLength={20}
+                                        pattern="^[a-zA-Z]+$"
+                                        required
+                                        placeholder="Last Name"
+                                        className="w-full p-2 border border-gray-400"
+                                        value={data.lastname}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap mb-8">
+                        <div className="flex flex-wrap w-1/2">
+                            <div className="w-1/4">
+                                <label className="text-lg font-bold">
+                                    Date of Birth:
+                                </label>
+                            </div>
+                            <input
+                                type="text"
+                                id="dob"
+                                pattern="\d{1,2}\/\d{1,2}\/\d{4}"
+                                required
+                                placeholder="DD/MM/YYYY"
+                                className="w-3/4 p-2 border border-gray-400"
+                                value={data.dob}
+                            />
+                        </div>
+                        <div className="flex flex-wrap w-1/2 pl-5">
+                            <div className="w-1/4">
+                                <label className="text-lg font-bold">
+                                    Gender:
+                                </label>
+                            </div>
+                            <div className="w-3/4">
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    id="gender-male"
+                                    required
+                                    // value="Male"
+                                    value={data.gender}
+                                />
+                                <label
+                                    className="ml-2 text-lg font-bold"
+                                    htmlFor="gender-male"
+                                >
+                                    Male
+                                </label>
+
+                                <input
+                                    className="ml-8"
+                                    type="radio"
+                                    name="gender"
+                                    id="gender-female"
+                                    required
+                                    value="Female"
+                                    // value={data.gender}
+                                />
+                                <label
+                                    className="ml-2 text-lg font-bold"
+                                    htmlFor="gender-female"
+                                >
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-wrap mb-8">
+                        <div className="flex flex-wrap w-1/2">
+                            <div className="w-1/4">
+                                <label className="mb-2 text-lg font-bold">
+                                    Street:
+                                </label>
+                            </div>
+                            <input
+                                type="text"
+                                id="street"
+                                maxLength={40}
+                                required
+                                placeholder="Enter Street"
+                                className="w-3/4 p-2 border border-gray-400"
+                                value={data.street}
+                            />
+                        </div>
+
+                        <div className="flex flex-wrap w-1/2 pl-5">
+                            <div className="w-1/4">
+                                <label className="mb-2 text-lg font-bold">
+                                    Suburb:
+                                </label>
+                            </div>
+                            <input
+                                type="text"
+                                id="suburb"
+                                maxLength={40}
+                                required
+                                placeholder="Enter Suburb"
+                                className="w-3/4 p-2 border border-gray-400"
+                                value={data.suburb}
+                            />
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap mb-8">
+                        <div className="flex flex-wrap w-1/2">
+                            <div className="w-1/4">
+                                <label className="mb-2 text-lg font-bold">
+                                    State:
+                                </label>
+                            </div>
+                            <select
+                                name="state"
+                                id="state"
+                                required
+                                className="w-3/4 p-2 border border-gray-400"
+                            >
+                                {/* <option value="">Please Select</option> */}
+                                <option value={data.state}>
+                                    Please Select
+                                </option>
+                                <option id="VIC" value="VIC">
+                                    VIC
+                                </option>
+                                <option id="NSW" value="NSW">
+                                    NSW
+                                </option>
+                                <option id="QLD" value="QLD">
+                                    QLD
+                                </option>
+                                <option id="NT" value="NT">
+                                    NT
+                                </option>
+                                <option id="WA" value="WA">
+                                    WA
+                                </option>
+                                <option id="SA" value="SA">
+                                    SA
+                                </option>
+                                <option id="TAS" value="TAS">
+                                    TAS
+                                </option>
+                                <option id="ACT" value="ACT">
+                                    ACT
+                                </option>
+                            </select>
+                        </div>
+
+                        <div className="flex flex-wrap w-1/2 pl-5">
+                            <div className="w-1/4">
+                                <label className="mb-2 text-lg font-bold">
+                                    Postcode:
+                                </label>
+                            </div>
+                            <input
+                                type="text"
+                                id="postcode"
+                                maxLength={4}
+                                minLength={4}
+                                pattern="[0-9]{4}"
+                                required
+                                placeholder="Enter Postcode"
+                                className="w-3/4 p-2 border border-gray-400"
+                                value={data.postcode}
+                            />
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap mb-8">
+                        <div className="flex flex-wrap w-1/2">
+                            <div className="w-1/4">
+                                <label className="mb-2 text-lg font-bold">
+                                    Phone:
+                                </label>
+                            </div>
+                            <input
+                                type="text"
+                                id="phone"
+                                maxLength={12}
+                                minLength={8}
+                                pattern="^[0-9]+"
+                                required
+                                placeholder="Enter Phone Number"
+                                className="w-3/4 p-2 border border-gray-400"
+                                value={data.phone}
+                            />
+                        </div>
+
+                        <div className="flex flex-wrap w-1/2 pl-5">
+                            <div className="w-1/4">
+                                <label className="mb-2 text-lg font-bold ">
+                                    Email:
+                                </label>
+                            </div>
+                            <input
+                                type="text"
+                                id="email"
+                                pattern="^.+@.+\..{2,3}$"
+                                required
+                                placeholder="Enter Email Address"
+                                className="w-3/4 p-2 border border-gray-400"
+                                value={data.email}
+                            />
+                        </div>
                     </div>
                 </div>
-            </form>
-        </>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </div>
     );
 }
-
 function Button() {
     return (
         <div className="p-1.5">
@@ -247,226 +481,6 @@ function ReferenceNumber() {
                 </div>
             </div>
         </>
-    );
-}
-
-function PersonalDetail({ data }: PersonalDetailProps) {
-    return (
-        <div className="p-1.5">
-            <h2 className="mb-8 text-3xl font-bold">Personal Detail</h2>
-            <div className="flex flex-wrap mb-8">
-                <div className="flex flex-wrap w-1/2">
-                    <div className="w-1/4">
-                        <label className="text-lg font-bold">First Name:</label>
-                    </div>
-                    <div className="w-3/4">
-                        <input
-                            type="text"
-                            id="firstname"
-                            maxLength={20}
-                            pattern="^[a-zA-Z]+$"
-                            required
-                            placeholder="First Name"
-                            value={data.firstname} // Set the value from the data object
-                            className="w-full p-2 border border-gray-400"
-                        />
-                    </div>
-                </div>
-                <div className="flex flex-wrap w-1/2 pl-5">
-                    <div className="w-1/4">
-                        <label className="text-lg font-bold">Last Name:</label>
-                    </div>
-                    <div className="w-3/4">
-                        <input
-                            type="text"
-                            id="lastname"
-                            maxLength={20}
-                            pattern="^[a-zA-Z]+$"
-                            required
-                            placeholder="Last Name"
-                            value={data.lastname} // Set the value from the data object
-                            className="w-full p-2 border border-gray-400"
-                        />
-                    </div>
-                </div>
-            </div>
-            <div className="flex flex-wrap mb-8">
-                <div className="flex flex-wrap w-1/2">
-                    <div className="w-1/4">
-                        <label className="text-lg font-bold">
-                            Date of Birth:
-                        </label>
-                    </div>
-                    <input
-                        type="text"
-                        id="dob"
-                        pattern="\d{1,2}\/\d{1,2}\/\d{4}"
-                        required
-                        placeholder="DD/MM/YYYY"
-                        className="w-3/4 p-2 border border-gray-400"
-                    />
-                </div>
-                <div className="flex flex-wrap w-1/2 pl-5">
-                    <div className="w-1/4">
-                        <label className="text-lg font-bold">Gender:</label>
-                    </div>
-                    <div className="w-3/4">
-                        <input
-                            type="radio"
-                            name="gender"
-                            id="gender-male"
-                            required
-                            value="Male"
-                        />
-                        <label
-                            className="ml-2 text-lg font-bold"
-                            htmlFor="gender-male"
-                        >
-                            Male
-                        </label>
-
-                        <input
-                            className="ml-8"
-                            type="radio"
-                            name="gender"
-                            id="gender-female"
-                            required
-                            value="Female"
-                        />
-                        <label
-                            className="ml-2 text-lg font-bold"
-                            htmlFor="gender-female"
-                        >
-                            Female
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div className="flex flex-wrap mb-8">
-                <div className="flex flex-wrap w-1/2">
-                    <div className="w-1/4">
-                        <label className="mb-2 text-lg font-bold">
-                            Street:
-                        </label>
-                    </div>
-                    <input
-                        type="text"
-                        id="street"
-                        maxLength={40}
-                        required
-                        placeholder="Enter Street"
-                        className="w-3/4 p-2 border border-gray-400"
-                    />
-                </div>
-
-                <div className="flex flex-wrap w-1/2 pl-5">
-                    <div className="w-1/4">
-                        <label className="mb-2 text-lg font-bold">
-                            Suburb:
-                        </label>
-                    </div>
-                    <input
-                        type="text"
-                        id="suburb"
-                        maxLength={40}
-                        required
-                        placeholder="Enter Suburb"
-                        className="w-3/4 p-2 border border-gray-400"
-                    />
-                </div>
-            </div>
-            <div className="flex flex-wrap mb-8">
-                <div className="flex flex-wrap w-1/2">
-                    <div className="w-1/4">
-                        <label className="mb-2 text-lg font-bold">State:</label>
-                    </div>
-                    <select
-                        name="state"
-                        id="state"
-                        required
-                        className="w-3/4 p-2 border border-gray-400"
-                    >
-                        <option value="">Please Select</option>
-                        <option id="VIC" value="VIC">
-                            VIC
-                        </option>
-                        <option id="NSW" value="NSW">
-                            NSW
-                        </option>
-                        <option id="QLD" value="QLD">
-                            QLD
-                        </option>
-                        <option id="NT" value="NT">
-                            NT
-                        </option>
-                        <option id="WA" value="WA">
-                            WA
-                        </option>
-                        <option id="SA" value="SA">
-                            SA
-                        </option>
-                        <option id="TAS" value="TAS">
-                            TAS
-                        </option>
-                        <option id="ACT" value="ACT">
-                            ACT
-                        </option>
-                    </select>
-                </div>
-
-                <div className="flex flex-wrap w-1/2 pl-5">
-                    <div className="w-1/4">
-                        <label className="mb-2 text-lg font-bold">
-                            Postcode:
-                        </label>
-                    </div>
-                    <input
-                        type="text"
-                        id="postcode"
-                        maxLength={4}
-                        minLength={4}
-                        pattern="[0-9]{4}"
-                        required
-                        placeholder="Enter Postcode"
-                        className="w-3/4 p-2 border border-gray-400"
-                    />
-                </div>
-            </div>
-            <div className="flex flex-wrap mb-8">
-                <div className="flex flex-wrap w-1/2">
-                    <div className="w-1/4">
-                        <label className="mb-2 text-lg font-bold">Phone:</label>
-                    </div>
-                    <input
-                        type="text"
-                        id="phone"
-                        maxLength={12}
-                        minLength={8}
-                        pattern="^[0-9]+"
-                        required
-                        placeholder="Enter Phone Number"
-                        className="w-3/4 p-2 border border-gray-400"
-                    />
-                </div>
-
-                <div className="flex flex-wrap w-1/2 pl-5">
-                    <div className="w-1/4">
-                        <label className="mb-2 text-lg font-bold ">
-                            Email: (it will be used for your id)
-                        </label>
-                    </div>
-                    <input
-                        type="text"
-                        id="email"
-                        pattern="^.+@.+\..{2,3}$"
-                        required
-                        placeholder="Enter Email Address"
-                        className="w-3/4 p-2 border border-gray-400"
-                    />
-                </div>
-            </div>
-        </div>
     );
 }
 
