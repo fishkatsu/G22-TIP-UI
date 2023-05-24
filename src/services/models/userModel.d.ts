@@ -2,13 +2,11 @@ export interface User {
   // username: string;
   // id: string;
 
-  companyId: number;
   email: string;
+  phone: string;
   firstName: string;
   lastName: string;
   password: string;
-  phone: string;
-  roleCode: string;
-  type: string;
+  userRole: string;
   username: string;
 }

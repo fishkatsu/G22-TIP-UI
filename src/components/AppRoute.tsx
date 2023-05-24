@@ -37,7 +37,7 @@ const AppRoutes = () => {
                     element={<LandingPermanent />}
                 />
                 <Route path="/" element={<LandingPublic />} />
-                <Route path="/jobavailablep" element={<JobAvailablePublic />} />
+                <Route path="/jobavailable-public" element={<JobAvailablePublic />} />
                 <Route path="/applyjob" element={<ApplyJob />} />
                 <Route path="/login" element={<Login />} />
 
@@ -46,7 +46,7 @@ const AppRoutes = () => {
                     element={<LandingSessional />}
                 />
                 <Route
-                    path="/jobavailables"
+                    path="/jobavailable-sessional"
                     element={<JobAvailableSessional />}
                 />
                 <Route path="/applyjobs" element={<ApplyJobsessional />} />

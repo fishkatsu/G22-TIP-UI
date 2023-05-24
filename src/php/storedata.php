@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 require_once("settings.php");
 
 $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
-$sql_table = "Application";
+$sql_table = "application";
 $sql_table_education = "school";
 $sql_table_experience = "WorkExperience";
 
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['CONTENT_TYPE']) && 
         echo json_encode(array('error' => 'Database connection failure'));
     } else {
         // Prepare the data for insertion into the database
-        $jobrefNum = mysqli_real_escape_string($conn, $data['jobrefNum']);
+        $jobRefNum = mysqli_real_escape_string($conn, $data['jobRefNum']);
         $firstname = mysqli_real_escape_string($conn, $data['firstname']);
         $lastname = mysqli_real_escape_string($conn, $data['lastname']);
         $gender = mysqli_real_escape_string($conn, $data['gender']);
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['CONTENT_TYPE']) && 
         }
 
         // Insert the main application data into the database
-        $query = "INSERT INTO $sql_table (jobrefNum, firstname, lastname, gender, dob, street, suburb, state, postcode, phone, email, password, availability) VALUES ('$jobrefNum', '$firstname', '$lastname', '$gender', '$dob', '$street', '$suburb', '$state', '$postcode', '$phone', '$email', '$password', '$availability')";
+        $query = "INSERT INTO $sql_table (jobRefNum, firstname, lastname, gender, dob, street, suburb, state, postcode, phone, email, password, availability) VALUES ('$jobRefNum', '$firstname', '$lastname', '$gender', '$dob', '$street', '$suburb', '$state', '$postcode', '$phone', '$email', '$password', '$availability')";
         if (mysqli_query($conn, $query)) {
             $applicationId = mysqli_insert_id($conn);
             

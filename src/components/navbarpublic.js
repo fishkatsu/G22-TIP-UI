@@ -24,20 +24,20 @@ const NavbarPublic = () => {
                     </li>
                     <li className="p-4 whitespace-nowrap">
                         <Link
-                            to={"/jobavailablep"}
+                            to={"/jobavailable-public"}
                             className="mr-4 text-xl font-bold text-white uppercase text-navMenu"
                         >
                             Job Available
                         </Link>
                     </li>
-                    <li className="p-4 whitespace-nowrap">
+                    {/* <li className="p-4 whitespace-nowrap">
                         <Link
                             to={"/applyjob"}
                             className="mr-4 text-xl font-bold text-white uppercase text-navMenu"
                         >
                             Apply Job
                         </Link>
-                    </li>
+                    </li> */}
                     <li className="p-4">
                         <Link
                             to={"/login"}

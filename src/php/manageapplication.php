@@ -5,7 +5,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 require_once("settings.php");
 $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
-$sql_table = "Application";
+$sql_table = "application";
 
 if (!$conn) {
     echo json_encode(array('error' => 'Database connection failure'));
@@ -21,7 +21,7 @@ if (!$conn) {
         while ($row = mysqli_fetch_assoc($result)) {
             $application = array(
                 'applyNum' => $row['applyNum'],
-                'jobrefNum' => $row['jobrefNum'],
+                'jobRefNum' => $row['jobrefNum'],
                 'firstname' => $row['firstname'],
                 'lastname' => $row['lastname'],
                 'gender' => $row['gender'],
@@ -34,7 +34,7 @@ if (!$conn) {
                 'email' => $row['email'],
                 'availability' => $row['availability'],
                 'status' => $row['status'],
-                'Title' => $row['Title'],
+                'title' => $row['title'],
                 'schools' => array() // Initialize an empty array to store school entries
             );
 

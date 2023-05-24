@@ -5,7 +5,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 require_once("settings.php");
 $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
-$sql_table = "TimeTable";
+$sql_table = "timeTable";
 if (!$conn) {
     echo json_encode(array('error' => 'Database connection failure'));
 } else {

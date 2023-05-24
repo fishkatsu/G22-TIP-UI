@@ -29,7 +29,7 @@ function Jumbotron() {
                 <p className="p-3 mb-8 text-lg text-black bg-gray-100 rounded-full">
                     Learn and grow with us
                 </p>
-                <Link to="/jobavailablep">
+                <Link to="/jobavailable-public">
                     <button className="px-6 py-2 text-3xl text-black underline bg-white rounded-full shadow-lg">
                         Apply Now
                     </button>

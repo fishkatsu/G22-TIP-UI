@@ -1,0 +1,41 @@
+CREATE TABLE `application` (
+  `applyNum` int(11) NOT NULL,
+  `jobRefNum` varchar(6) DEFAULT NULL,
+  `firstname` varchar(40) DEFAULT NULL,
+  `lastname` varchar(40) DEFAULT NULL,
+  `gender` varchar(6) DEFAULT NULL,
+  `dob` varchar(10) DEFAULT NULL,
+  `street` varchar(40) DEFAULT NULL,
+  `suburb` varchar(20) DEFAULT NULL,
+  `state` varchar(20) DEFAULT NULL,
+  `postcode` varchar(4) DEFAULT NULL,
+  `phone` varchar(10) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `password` varchar(20) NOT NULL,
+  `availability` varchar(20) DEFAULT NULL,
+  `status` enum('New','Processing','Accepted','Rejected','Permanent','Sessional') DEFAULT 'New',
+  `title` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `school` (
+  `applyNum` int(11) DEFAULT NULL,
+  `SFrom` varchar(7) DEFAULT NULL,
+  `STo` varchar(7) DEFAULT NULL,
+  `SName` varchar(80) DEFAULT NULL,
+  `Qualification` varchar(80) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `timeTable` (
+  `applyNum` int(11) DEFAULT NULL,
+  `date` varchar(10) DEFAULT NULL,
+  `unit` varchar(10) DEFAULT NULL,
+  `time` varchar(5) DEFAULT NULL,
+  `location` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `workExperience` (
+  `applyNum` int(11) DEFAULT NULL,
+  `WFrom` varchar(7) DEFAULT NULL,
+  `WTo` varchar(7) DEFAULT NULL,
+  `CName` varchar(20) DEFAULT NULL,
+  `Position` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
