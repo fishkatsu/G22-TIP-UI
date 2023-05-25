@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavbarPermanent from "../../components/navbarpermanent";
+import axios from "axios";
 
 interface Application {
-    applyNum: string;
-    jobrefNum: string;
-    firstname: string;
-    lastname: string;
+    id: number;
+    refNo: string;
+    firstName: string;
+    lastName: string;
     gender: string;
     dob: string;
     street: string;
@@ -25,7 +26,7 @@ function ManageSessional() {
         <>
             <NavbarPermanent />
             <div className="flex flex-col p-10 m-8 shadow-lg">
-                <h1 className="mb-10 text-4xl font-bold">Manage Applicant</h1>
+                <h1 className="mb-10 text-4xl font-bold">Manage Sessional</h1>
                 <div className="flex flex-col">
                     <TableC />
                     {/* <Link to={"/viewsessional"}>
@@ -39,22 +40,18 @@ function ManageSessional() {
 
 function TableC() {
     const [data, setData] = useState<Application[]>([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch("http://localhost:8888/manageapplication.php")
-            .then((response) => response.json())
-            .then((data: Application[]) => {
-                // Filter the data array based on status
-                const filteredData = data.filter(
-                    (item) =>
-                        item.status === "New" ||
-                        item.status === "Accepted" ||
-                        item.status === "Rejected"
-                );
-                setData(filteredData);
-            })
-            .catch((error) => console.error("Error:", error));
+		listSessional();
     }, []);
+
+    const listSessional = async () => {
+		const result = await axios.post('http://localhost:8080/application/list-sessional');
+		setData(result.data)
+		// setJobList(result.data)
+		console.log(result.data);
+	};
 
     const handleClick = (action: string, applyNum: string, jobId: string) => {
         // Store jobID in localStorage
@@ -115,9 +112,9 @@ function TableC() {
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {data.map((item) => (
-                                <tr key={item.applyNum}>
+                                <tr key={item.id}>
                                     <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        {item.applyNum}
+                                        {item.id}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         <Link to={"/viewsessional"}>
@@ -126,18 +123,18 @@ function TableC() {
                                                 onClick={(e) =>
                                                     handleClick(
                                                         "",
-                                                        item.applyNum,
+                                                        item.id+"",
                                                         e.currentTarget.id
                                                     )
                                                 }
-                                                id={item.applyNum}
+                                                // id={item.id}
                                             >
-                                                {item.jobrefNum}
+                                                {item.refNo}
                                             </button>
                                         </Link>
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.firstname} {item.lastname}
+                                        {item.firstName} {item.lastName}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.email}
