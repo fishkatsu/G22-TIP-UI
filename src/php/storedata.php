@@ -8,7 +8,7 @@ require_once("settings.php");
 $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 $sql_table = "application";
 $sql_table_education = "school";
-$sql_table_experience = "WorkExperience";
+$sql_table_experience = "workExperience";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['CONTENT_TYPE']) && $_SERVER['CONTENT_TYPE'] === 'application/json') {
     $json_data = file_get_contents("php://input");

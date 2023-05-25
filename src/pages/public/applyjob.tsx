@@ -17,7 +17,7 @@ interface WorkExperience {
 
 function ApplyJob() {
     const [formData, setFormData] = useState({
-        jobrefNum: "",
+        jobRefNum: "",
         firstname: "",
         lastname: "",
         gender: "",
@@ -64,7 +64,7 @@ function ApplyJob() {
         event.preventDefault();
 
         const updatedFormData = {
-            jobrefNum: formData.jobrefNum,
+            jobRefNum: formData.jobRefNum,
             firstname: formData.firstname,
             lastname: formData.lastname,
             gender: formData.gender,
@@ -124,6 +124,7 @@ function ApplyJob() {
                         Application Form
                     </h1>
                     <div className="flex flex-col">
+                        <Password handleChange={handleChange} />
                         <ReferenceNumber handleChange={handleChange} />
                         <PersonalDetail handleChange={handleChange} />
                         <EducationalBackground
@@ -143,7 +144,6 @@ function ApplyJob() {
                             setworkExperience2={setWorkExperience2}
                         />
                         <TimeAvailability data={data} setData={setData} />
-                        <Password handleChange={handleChange} />
                         <Button />
                     </div>
                 </div>
@@ -327,7 +327,66 @@ function EducationalBackground({
         </>
     );
 }
+function Password({ handleChange }: { handleChange: Function }) {
+    return (
+        <>
+        <div className="flex flex-wrap w-1/2 pl-5">
+        <div className="w-1/4">
+          <label className="mb-2 text-lg font-bold " htmlFor="Email">Email:</label>
+        </div>
+        <input
+          type="text"
+          id="Email"
+          pattern="^.+@.+\..{2,3}$"
+          required
+          placeholder="Enter Email Address"
+          className="w-3/4 p-2 border border-gray-400"
+        //   value={user.email}
+          // onChange={(e) => onInputChange(e)}
+        />
+        </div>
+            {/* <div className="flex flex-wrap p-1.5 mb-8 p-1.5">
+                <div className="w-1/8">
+                    <div>
+                        <label className="text-lg font-bold">
+                            Email (UserName):
+                        </label>
+                    </div>
 
+                    <div className="w-1/8">
+                    <input
+                        type="text"
+                        id="email"
+                        pattern="^.+@.+\..{2,3}$"
+                        required
+                        placeholder="Enter Email Address"
+                        className="w-3/4 p-2 border border-gray-400"
+                        onChange={(e) => handleChange(e)}
+                    />
+                    </div>
+                </div>
+            </div> */}
+            <div className="flex flex-wrap p-1.5 mb-8 p-1.5">
+                <div className="w-1/8">
+                    <label className="text-lg font-bold">
+                    Password:
+                    </label>
+                </div>
+                <div className="w-1/8">
+                <input
+                        type="password"
+                        id="password"
+                        pattern=".{8,}"
+                        required
+                        placeholder="Enter Password"
+                        className="w-3/4 p-2 border border-gray-400"
+                        onChange={(e) => handleChange(e)}
+                    />
+                </div>
+            </div>
+        </>
+    );
+}
 function ReferenceNumber({ handleChange }: { handleChange: Function }) {
     const [jobrefNum, setJobrefNum] = useState("");
 
@@ -371,7 +430,6 @@ function ReferenceNumber({ handleChange }: { handleChange: Function }) {
         </>
     );
 }
-
 function PersonalDetail({ handleChange }: { handleChange: Function }) {
     return (
         <div className="p-1.5">
@@ -580,7 +638,7 @@ function PersonalDetail({ handleChange }: { handleChange: Function }) {
                     />
                 </div>
 
-                <div className="flex flex-wrap w-1/2 pl-5">
+                {/* <div className="flex flex-wrap w-1/2 pl-5">
                     <div className="w-1/4">
                         <label className="mb-2 text-lg font-bold ">
                             Email: (it will be used for your id)
@@ -595,7 +653,7 @@ function PersonalDetail({ handleChange }: { handleChange: Function }) {
                         className="w-3/4 p-2 border border-gray-400"
                         onChange={(e) => handleChange(e)}
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     );
@@ -842,27 +900,6 @@ function TimeAvailability({ data, setData }: { data: any; setData: Function }) {
     );
 }
 
-function Password({ handleChange }: { handleChange: Function }) {
-    return (
-        <>
-            <div className="flex flex-wrap p-1.5 mb-8">
-                <div className="mr-8">
-                    <label className="text-3xl font-bold ">Password:</label>
-                </div>
-                <div>
-                    <input
-                        type="password"
-                        id="password"
-                        pattern=".{8,}"
-                        required
-                        placeholder="Enter Password"
-                        className="w-3/4 p-2 border border-gray-400"
-                        onChange={(e) => handleChange(e)}
-                    />
-                </div>
-            </div>
-        </>
-    );
-}
+
 
 export default ApplyJob;

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavbarPermanent from "../../components/navbarpermanent";
-
+import { async } from "q";
+import axios from "axios";
 interface Application {
-    applyNum: string;
-    jobrefNum: string;
-    firstname: string;
-    lastname: string;
+    // applyNum: string;
+    id: number;
+    refNo: string;
+    firstName: string;
+    lastName: string;
     gender: string;
     dob: string;
     street: string;
@@ -19,7 +21,8 @@ interface Application {
     status: string;
 }
 
-function ManageApplication() {
+export default function ManageApplication() {
+
     return (
         <>
             <NavbarPermanent />
@@ -38,24 +41,63 @@ function ManageApplication() {
 
 function TableC() {
     const [data, setData] = useState<Application[]>([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch("http://localhost:8888/manageapplication.php")
-            .then((response) => response.json())
-            .then((data: Application[]) => {
-                // Filter the data array based on status
-                const filteredData = data.filter(
-                    (item) =>
-                        item.status === "New" ||
-                        item.status === "Accepted" ||
-                        item.status === "Rejected"
-                );
-                setData(filteredData);
-            })
-            .catch((error) => console.error("Error:", error));
-    }, []);
+		listJob();
+	}, []);
 
-    const handleClick = (action: string, applyNum: string, jobId: string) => {
+	const listJob = async () => {
+		const result = await axios.post('http://localhost:8080/application/list');
+		setData(result.data)
+		// setJobList(result.data)
+		console.log(result.data);
+	};
+    // useEffect(() => {
+    //     fetch("http://localhost:8888/manageapplication.php")
+    //         .then((response) => response.json())
+    //         .then((data: Application[]) => {
+    //             // Filter the data array based on status
+    //             const filteredData = data.filter(
+    //                 (item) =>
+    //                     item.status === "New" ||
+    //                     item.status === "Accepted" ||
+    //                     item.status === "Rejected"
+    //             );
+    //             setData(filteredData);
+    //         })
+    //         .catch((error) => console.error("Error:", error));
+    // }, []);
+    const handleClick = async (action: string, id: number, jobId: string) => {
+        // Store jobID in localStorage
+        localStorage.setItem("jobID", jobId);
+        setLoading(true);
+        console.log("id", id);
+        console.log("action", action);
+
+        try {
+        // Make API call to update the status
+        const response = await axios.post(`http://localhost:8080/application/update-status`, {
+                applicationId: id,
+                status: action
+            });
+            console.log("response", response.data);
+            const data = response.data;
+
+            if (data.result === "accept") {
+                alert("Application accepted");
+            } else if (data.result === "decline") {
+                alert("Application rejected");
+            }
+    } catch {
+        console.error("error");
+        // alert("Unsuccessful login, please try again");
+    } finally{
+        setLoading(false);
+		listJob();
+    }};
+
+    const handleClick1 = (action: string, applyNum: string, jobId: string) => {
         // Store jobID in localStorage
         localStorage.setItem("jobID", jobId);
 
@@ -144,9 +186,9 @@ function TableC() {
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {data.map((item) => (
-                                <tr key={item.applyNum}>
+                                <tr key={item.id}>
                                     <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        {item.applyNum}
+                                        {item.id}
                                     </td>
                                     <td className="px-6 py-4 text-sm font-bold text-gray-800 whitespace-nowrap">
                                         <Link to={"/viewsessionalapply"}>
@@ -155,21 +197,21 @@ function TableC() {
                                                 onClick={(e) =>
                                                     handleClick(
                                                         "",
-                                                        item.applyNum,
+                                                        item.id,
                                                         e.currentTarget.id
                                                     )
                                                 }
-                                                id={item.applyNum}
+                                                id={item.id+""}
                                             >
-                                                {item.jobrefNum}
+                                                {item.refNo}
                                             </button>
                                         </Link>
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.firstname}
+                                        {item.firstName}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.lastname}
+                                        {item.lastName}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.email}
@@ -183,11 +225,11 @@ function TableC() {
                                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         <button
                                             className="w-full p-1 text-white bg-green-500 rounded shadow-lg text-m hover:bg-green-700"
-                                            id={item.applyNum}
+                                            id={item.id+""}
                                             onClick={(e) =>
                                                 handleClick(
                                                     "accept",
-                                                    item.applyNum,
+                                                    item.id,
                                                     e.currentTarget.id
                                                 )
                                             }
@@ -201,7 +243,7 @@ function TableC() {
                                             onClick={(e) =>
                                                 handleClick(
                                                     "decline",
-                                                    item.applyNum,
+                                                    item.id,
                                                     e.currentTarget.id
                                                 )
                                             }
@@ -219,5 +261,3 @@ function TableC() {
         </div>
     );
 }
-
-export default ManageApplication;

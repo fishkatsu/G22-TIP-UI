@@ -10,14 +10,13 @@ interface EOI {
 }
 
 function LandingPermanent() {
-    const [data, setData] = useState<EOI[]>([]);
-
-    useEffect(() => {
-        fetch("http://localhost:8888/showall.php")
-            .then((response) => response.json())
-            .then((data: EOI[]) => setData(data))
-            .catch((error) => console.error("Error:", error));
-    }, []);
+    // const [data, setData] = useState<EOI[]>([]);
+    // useEffect(() => {
+    //     fetch("http://localhost:8888/showall.php")
+    //         .then((response) => response.json())
+    //         .then((data: EOI[]) => setData(data))
+    //         .catch((error) => console.error("Error:", error));
+    // }, []);
 
     return (
         <div>
@@ -45,7 +44,7 @@ function Card() {
         <>
             {/* make 3 cards, with title "Lorem Ipsum" on top of the cards */}
             <div className="flex flex-col items-center justify-center p-10 m-8 bg-gray-100 shadow-lg">
-                <h1 className="mb-4 text-4xl font-bold">Welcome John</h1>
+                <h1 className="mb-4 text-4xl font-bold">Welcome {localStorage.getItem("username")}</h1>
                 <div className="flex flex-row items-center justify-center">
                     <Link to={"/manageapplication"} className="">
                         <div className="flex flex-col items-center justify-center p-10 m-4 bg-white shadow-lg">

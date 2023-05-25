@@ -6,6 +6,7 @@ import LandingPublic from "../pages/public/landingpublic";
 import JobAvailablePublic from "../pages/public/jobavailablepublic";
 import ApplyJob from "../pages/public/applyjob";
 import Login from "../pages/public/login";
+import Register from "../pages/public/register";
 
 import LandingSessional from "../pages/sessional/landingsessional";
 import Timetable from "../pages/sessional/timetable";
@@ -40,7 +41,7 @@ const AppRoutes = () => {
                 <Route path="/jobavailable-public" element={<JobAvailablePublic />} />
                 <Route path="/applyjob" element={<ApplyJob />} />
                 <Route path="/login" element={<Login />} />
-
+                <Route path="/register" element={<Register />} />
                 <Route
                     path="/landingsessional"
                     element={<LandingSessional />}
@@ -49,7 +50,7 @@ const AppRoutes = () => {
                     path="/jobavailable-sessional"
                     element={<JobAvailableSessional />}
                 />
-                <Route path="/applyjobs" element={<ApplyJobsessional />} />
+                <Route path="/applyjob-sessional/:refNo" element={<ApplyJobsessional />} />
                 <Route path="/timetable" element={<Timetable />} />
                 <Route path="/availability" element={<Availability />} />
 

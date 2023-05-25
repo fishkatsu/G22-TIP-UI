@@ -9,13 +9,13 @@ $sql_table = "application";
 if (!$conn) {
     echo json_encode(array('error' => 'Database connection failure'));
 } else {
-    $query = "SELECT * FROM Application";
+    $query = "SELECT * FROM user";
     $result = mysqli_query($conn, $query);
     
     if (!$result) {
         echo json_encode(array('error' => 'Table does not exist'));
     } else {
-        $data = array();
+        $data = array()
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
         }

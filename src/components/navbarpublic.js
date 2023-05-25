@@ -46,6 +46,14 @@ const NavbarPublic = () => {
                             Login
                         </Link>
                     </li>
+                    <li className="p-4">
+                        <Link
+                            to={"/register"}
+                            className="text-xl font-bold text-white uppercase text-navMenu"
+                        >
+                            Signup
+                        </Link>
+                    </li>
                 </ul>
 
                 {/* side menu for small devices */}
