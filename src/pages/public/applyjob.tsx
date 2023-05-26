@@ -84,8 +84,6 @@ function ApplyJob() {
         console.log("Work Experience 1:", workExperience1);
         console.log("Work Experience 2:", workExperience2);
 
-        // console.log("test", updatedFormData.educationalBackground);
-
         fetch("http://localhost:8888/storedata.php", {
             method: "POST",
             headers: {
@@ -95,14 +93,9 @@ function ApplyJob() {
         })
             .then((response) => response.text())
             .then((data) => {
-                // console.log("Education 1:", education1);
-                // console.log("Education 2:", education2);
-                // console.log("Work Experience 1:", workExperience1);
-                // console.log("Work Experience 2:", workExperience2);
                 alert("Application submitted successfully");
 
                 console.log(data); // Application submitted successfully or error message
-                // Optionally, you can redirect the user to a success page or perform any other action
             })
             .catch((error) => console.error("Error:", error));
     };
@@ -199,8 +192,6 @@ function EducationalBackground({
         const { name, value } = event.target;
         setEducation2({ ...education2, [name]: value });
     };
-    // console.log("Education 1:", education1);
-    // console.log("Education 2:", education2);
     return (
         <>
             <div className="p-1.5 mb-8">
