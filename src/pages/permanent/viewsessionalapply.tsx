@@ -92,9 +92,11 @@ function Table({ data }: { data: Applications[] }) {
                 console.log(data);
                 if (action === "accept") {
                     alert("Application accepted");
+                    // Navigate to /manageapplication after user clicks "OK" on the alert box
                     window.location.href = "/manageapplication";
                 } else if (action === "decline") {
                     alert("Application rejected");
+                    // Navigate to /manageapplication after user clicks "OK" on the alert box
                     window.location.href = "/manageapplication";
                 }
             })

@@ -28,6 +28,9 @@ function ManageSessional() {
                 <h1 className="mb-10 text-4xl font-bold">Manage Applicant</h1>
                 <div className="flex flex-col">
                     <TableC />
+                    {/* <Link to={"/viewsessional"}>
+                        Sessional Page test button
+                    </Link> */}
                 </div>
             </div>
         </>
@@ -54,6 +57,7 @@ function TableC() {
     }, []);
 
     const handleClick = (action: string, applyNum: string, jobId: string) => {
+        // Store jobID in localStorage
         localStorage.setItem("jobID", jobId);
 
         // Make API call to update the status
@@ -62,6 +66,7 @@ function TableC() {
         )
             .then((response) => response.json())
             .then((data) => {
+                // Handle the response as needed
                 console.log(data);
                 if (action === "accept") {
                     alert("Application accepted");
