@@ -204,7 +204,7 @@ function Table({ data }: { data: Applications[] }) {
                                                 (experience) => (
                                                     <table
                                                         key={experience.CName}
-                                                        className="w-full"
+                                                        className="w-full mb-4"
                                                     >
                                                         <tbody>
                                                             <tr>
