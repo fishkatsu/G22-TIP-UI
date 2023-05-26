@@ -34,8 +34,8 @@ if (!$conn) {
                 'email' => $row['email'],
                 'availability' => $row['availability'],
                 'status' => $row['status'],
-                'schools' => array(), // Initialize an empty array to store school entries
-                'WorkExperience' => array() // Initialize an empty array to store work experience entries
+                'schools' => array(), 
+                'WorkExperience' => array() 
             );
 
             $schoolQuery = "SELECT * FROM school WHERE applyNum = '" . $row['applyNum'] . "'";

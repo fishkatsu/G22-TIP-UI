@@ -20,25 +20,23 @@ if (!$conn) {
             $data[] = $row;
         }
         
-        // Check email, password, and status conditions
-        $email = $_GET['email']; // Assuming you receive the email as a parameter
-        $password = $_GET['password']; // Assuming you receive the password as a parameter
+        $email = $_GET['email'];
+        $password = $_GET['password'];
         
         $response = "";
-        $userId = ""; // Initialize userId variable
+        $userId = "";
         foreach ($data as $row) {
             if ($row['email'] === $email && $row['status'] === 'Sessional' && $row['password'] === $password) {
                 $response = "sessional";
-                $userId = $row['applyNum']; // Store applyNum as userId
+                $userId = $row['applyNum'];
                 break;
             } elseif ($row['email'] === $email && $row['status'] === 'Permanent' && $row['password'] === $password) {
                 $response = "permanent";
-                $userId = $row['applyNum']; // Store applyNum as userId
+                $userId = $row['applyNum'];
                 break;
             }
         }
         
-        // Return the appropriate value and userId
         if ($response !== "") {
             echo json_encode(array('response' => $response, 'userId' => $userId));
         } else {

@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 function Logout() {
     useEffect(() => {
-        // Clear session storage on component mount
+        // Clear local storage when logout
         localStorage.clear();
     }, []);
 

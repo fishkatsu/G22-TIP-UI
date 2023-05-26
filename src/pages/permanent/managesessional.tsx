@@ -25,12 +25,9 @@ function ManageSessional() {
         <>
             <NavbarPermanent />
             <div className="flex flex-col p-10 m-8 shadow-lg">
-                <h1 className="mb-10 text-4xl font-bold">Manage Applicant</h1>
+                <h1 className="mb-10 text-4xl font-bold">Manage Sessional</h1>
                 <div className="flex flex-col">
                     <TableC />
-                    {/* <Link to={"/viewsessional"}>
-                        Sessional Page test button
-                    </Link> */}
                 </div>
             </div>
         </>
@@ -57,10 +54,8 @@ function TableC() {
     }, []);
 
     const handleClick = (action: string, applyNum: string, jobId: string) => {
-        // Store jobID in localStorage
         localStorage.setItem("jobID", jobId);
 
-        // Make API call to update the status
         fetch(
             `http://localhost:8888/updatestatus.php?action=${action}&applyNum=${applyNum}`
         )

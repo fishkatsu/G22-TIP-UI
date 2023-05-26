@@ -43,7 +43,6 @@ function TableC() {
         fetch("http://localhost:8888/manageapplication.php")
             .then((response) => response.json())
             .then((data: Application[]) => {
-                // Filter the data array based on status
                 const filteredData = data.filter(
                     (item) =>
                         item.status === "New" ||
@@ -56,10 +55,8 @@ function TableC() {
     }, []);
 
     const handleClick = (action: string, applyNum: string, jobId: string) => {
-        // Store jobID in localStorage
         localStorage.setItem("jobID", jobId);
 
-        // Make API call to update the status
         fetch(
             `http://localhost:8888/updatestatus.php?action=${action}&applyNum=${applyNum}`
         )
@@ -116,12 +113,6 @@ function TableC() {
                                 >
                                     Email Address
                                 </th>
-                                {/* <th
-                                    scope="col"
-                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                                >
-                                    whattofill
-                                </th> */}
                                 <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
@@ -174,9 +165,6 @@ function TableC() {
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.email}
                                     </td>
-                                    {/* <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                        {item.suburb}
-                                    </td> */}
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.status}
                                     </td>

@@ -79,10 +79,8 @@ function ViewSessional() {
 
 function Table({ data }: { data: Applications[] }) {
     const handleClick = (action: string, applyNum: string, jobId: string) => {
-        // Store jobID in localStorage
         localStorage.setItem("jobID", jobId);
 
-        // Make API call to update the status
         fetch(
             `http://localhost:8888/updatestatus.php?action=${action}&applyNum=${applyNum}`
         )
@@ -92,11 +90,9 @@ function Table({ data }: { data: Applications[] }) {
                 console.log(data);
                 if (action === "accept") {
                     alert("Application accepted");
-                    // Navigate to /manageapplication after user clicks "OK" on the alert box
                     window.location.href = "/manageapplication";
                 } else if (action === "decline") {
                     alert("Application rejected");
-                    // Navigate to /manageapplication after user clicks "OK" on the alert box
                     window.location.href = "/manageapplication";
                 }
             })
@@ -194,13 +190,6 @@ function Table({ data }: { data: Applications[] }) {
                                                                 }
                                                             </td>
                                                         </tr>
-                                                        {/* <tr>
-                                                            <td className="w-1/4 pb-4">
-                                                                Availability:
-                                                            </td>
-                                                            <td className="w-3/4 pb-4">
-                                                                
-                                                        </tr> */}
                                                     </tbody>
                                                 </table>
                                             ))}
@@ -265,47 +254,11 @@ function Table({ data }: { data: Applications[] }) {
                                             )}
                                         </td>
                                     </tr>
-
-                                    {/* <tr>
-                                        <td className="w-1/4 pb-4 font-bold">
-                                            Status :
-                                        </td>
-                                        <td className="w-3/4 pb-4">
-                                            {item.status}
-                                        </td>
-                                    </tr> */}
                                 </tbody>
                             </table>
                         </div>
                         <div className="flex flex-col w-1/6">
-                            <button
-                                className="w-full p-2 m-2 text-lg font-bold text-white bg-green-500 rounded shadow-lg hover:bg-green-500 hover:text-black"
-                                onClick={(e) =>
-                                    handleClick(
-                                        "accept",
-                                        item.applyNum,
-                                        e.currentTarget.id
-                                    )
-                                }
-                                id={item.jobrefNum}
-                            >
-                                Accept
-                            </button>
-                            <button
-                                className="w-full p-2 m-2 text-lg font-bold text-white bg-red-500 rounded shadow-lg hover:bg-red-500 hover:text-black"
-                                onClick={(e) =>
-                                    handleClick(
-                                        "decline",
-                                        item.applyNum,
-                                        e.currentTarget.id
-                                    )
-                                }
-                                id={item.jobrefNum}
-                            >
-                                Decline
-                            </button>
-
-                            <Link to={"/manageapplication"}>
+                            <Link to={"/managesessional"}>
                                 <button className="w-full p-2 m-2 text-lg font-bold text-white bg-gray-500 rounded shadow-lg hover:bg-gray-500 hover:text-black">
                                     Back
                                 </button>

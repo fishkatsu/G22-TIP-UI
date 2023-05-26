@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link, Outlet } from "react-router-dom";
-import PermanentRoutes from "./routerpermanent";
 
 const NavbarPermanent = () => {
     const [nav, setNav] = useState(false);
@@ -13,7 +12,6 @@ const NavbarPermanent = () => {
         <div className="bg-gray-900">
             <div className="flex items-center justify-between h-24 px-16 mx-auto text-black">
                 <h1 className="w-full text-5xl font-bold text-white">CorpU.</h1>
-                {/* navbar menu */}
                 <ul className="hidden md:flex">
                     <li className="p-4">
                         <Link
@@ -39,14 +37,6 @@ const NavbarPermanent = () => {
                             Sessional Staff
                         </Link>
                     </li>
-                    {/* <li className="p-4 whitespace-nowrap">
-						<Link
-							to={"/publishrequest"}
-							className="mr-4 text-xl font-bold text-white uppercase text-navMenu"
-						>
-							Publish Request
-						</Link>
-					</li> */}
                     <li className="p-4">
                         <Link
                             to={"/logout"}
@@ -57,7 +47,6 @@ const NavbarPermanent = () => {
                     </li>
                 </ul>
 
-                {/* side menu for small devices */}
                 <div
                     onClick={handleNav}
                     className="block md:hidden"

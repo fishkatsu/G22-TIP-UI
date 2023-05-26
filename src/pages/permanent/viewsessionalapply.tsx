@@ -79,10 +79,8 @@ function ViewSessionalapply() {
 
 function Table({ data }: { data: Applications[] }) {
     const handleClick = (action: string, applyNum: string, jobId: string) => {
-        // Store jobID in localStorage
         localStorage.setItem("jobID", jobId);
 
-        // Make API call to update the status
         fetch(
             `http://localhost:8888/updatestatus.php?action=${action}&applyNum=${applyNum}`
         )
@@ -92,11 +90,9 @@ function Table({ data }: { data: Applications[] }) {
                 console.log(data);
                 if (action === "accept") {
                     alert("Application accepted");
-                    // Navigate to /manageapplication after user clicks "OK" on the alert box
                     window.location.href = "/manageapplication";
                 } else if (action === "decline") {
                     alert("Application rejected");
-                    // Navigate to /manageapplication after user clicks "OK" on the alert box
                     window.location.href = "/manageapplication";
                 }
             })

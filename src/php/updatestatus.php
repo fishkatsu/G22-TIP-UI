@@ -10,8 +10,8 @@ $sql_table = "Application";
 if (!$conn) {
     echo json_encode(array('error' => 'Database connection failure'));
 } else {
-    $action = $_GET['action']; // Action to perform (accept or decline)
-    $applyNum = $_GET['applyNum']; // Apply number of the application to update
+    $action = $_GET['action'];
+    $applyNum = $_GET['applyNum'];
     
     if ($action === "accept") {
         $status = "Accepted";
@@ -22,7 +22,6 @@ if (!$conn) {
         exit();
     }
     
-    // Update the status in the database
     $query = "UPDATE $sql_table SET status='$status' WHERE applyNum='$applyNum'";
     $result = mysqli_query($conn, $query);
     

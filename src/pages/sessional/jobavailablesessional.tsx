@@ -32,14 +32,12 @@ function JobTable() {
     const [data, setData] = useState<EOI[]>([]);
 
     useEffect(() => {
-        // Fetch data from the database or API
         fetch("http://localhost:8888/showall.php")
             .then((response) => response.json())
             .then((data: EOI[]) => setData(data))
             .catch((error) => console.error("Error:", error));
     }, []);
 
-    // save ID of the job that user clicked
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         const buttonElement = e.target as HTMLButtonElement;
         localStorage.setItem("jobID", buttonElement.id);
@@ -357,7 +355,6 @@ function JobTable() {
                             </td>
                         </tr>
                     </tbody>
-                    {/* create pagination if time permits*/}
                 </table>
             </div>
             <br />

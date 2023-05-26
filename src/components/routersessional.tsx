@@ -5,7 +5,6 @@ import Logout from "./logout";
 
 import LandingSessional from "../pages/sessional/landingsessional";
 import Timetable from "../pages/sessional/timetable";
-import Availability from "../pages/sessional/availability";
 
 const SessionalRoutes = () => {
     return (
@@ -17,7 +16,6 @@ const SessionalRoutes = () => {
                     element={<LandingSessional />}
                 />
                 <Route path="/timetable" element={<Timetable />} />
-                <Route path="/availability" element={<Availability />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="*">404 Not Found</Route>
             </Routes>

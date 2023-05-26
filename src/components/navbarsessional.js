@@ -22,14 +22,6 @@ const NavbarSessional = () => {
                             Home
                         </Link>
                     </li>
-                    {/* <li className="p-4 whitespace-nowrap">
-                        <Link
-                            to={"/jobavailables"}
-                            className="mr-4 text-xl font-bold text-white uppercase text-navMenu"
-                        >
-                            Job Available
-                        </Link>
-                    </li> */}
                     <li className="p-4 whitespace-nowrap">
                         <Link
                             to={"/timetable"}
@@ -38,14 +30,6 @@ const NavbarSessional = () => {
                             Timetable
                         </Link>
                     </li>
-                    {/* <li className="p-4 whitespace-nowrap">
-						<Link
-							to={"/availability"}
-							className="mr-4 text-xl font-bold text-white uppercase text-navMenu"
-						>
-							Availability
-						</Link>
-					</li> */}
                     <li className="p-4">
                         <Link
                             to={"/logout"}
