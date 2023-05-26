@@ -84,10 +84,6 @@ function LoginForm() {
                             Don't have an account? Register here.
                         </p>
                     </Link> */}
-                    <Link to={"/landingpermanent"}>permanent</Link>
-                    <Link to={"/landingsessional"}>
-                        <p>sessional</p>
-                    </Link>
                 </form>
             </div>
         </div>
