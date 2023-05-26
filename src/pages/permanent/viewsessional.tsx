@@ -194,6 +194,13 @@ function Table({ data }: { data: Applications[] }) {
                                                                 }
                                                             </td>
                                                         </tr>
+                                                        {/* <tr>
+                                                            <td className="w-1/4 pb-4">
+                                                                Availability:
+                                                            </td>
+                                                            <td className="w-3/4 pb-4">
+                                                                
+                                                        </tr> */}
                                                     </tbody>
                                                 </table>
                                             ))}
@@ -271,7 +278,7 @@ function Table({ data }: { data: Applications[] }) {
                             </table>
                         </div>
                         <div className="flex flex-col w-1/6">
-                            {/* <button
+                            <button
                                 className="w-full p-2 m-2 text-lg font-bold text-white bg-green-500 rounded shadow-lg hover:bg-green-500 hover:text-black"
                                 onClick={(e) =>
                                     handleClick(
@@ -296,9 +303,9 @@ function Table({ data }: { data: Applications[] }) {
                                 id={item.jobrefNum}
                             >
                                 Decline
-                            </button> */}
+                            </button>
 
-                            <Link to={"/managesessional"}>
+                            <Link to={"/manageapplication"}>
                                 <button className="w-full p-2 m-2 text-lg font-bold text-white bg-gray-500 rounded shadow-lg hover:bg-gray-500 hover:text-black">
                                     Back
                                 </button>

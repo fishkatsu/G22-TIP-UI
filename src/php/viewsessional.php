@@ -42,7 +42,6 @@ if (!$conn) {
             $schoolResult = mysqli_query($conn, $schoolQuery);
             
             if ($schoolResult) {
-                echo json_encode(array('success' => 'School query executed'));
                 while ($schoolRow = mysqli_fetch_assoc($schoolResult)) {
                     $schoolEntry = array(
                         'SFrom' => $schoolRow['SFrom'],
