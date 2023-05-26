@@ -136,9 +136,6 @@ function TableC() {
                         <tbody className="divide-y divide-gray-200">
                             {data.map((item) => (
                                 <tr key={item.applyNum}>
-                                    <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        {item.applyNum}
-                                    </td>
                                     <td className="px-6 py-4 text-sm font-bold text-gray-800 whitespace-nowrap">
                                         <Link to={"/viewsessionalapply"}>
                                             <button
@@ -152,9 +149,12 @@ function TableC() {
                                                 }
                                                 id={item.applyNum}
                                             >
-                                                {item.jobrefNum}
+                                                {item.applyNum}
                                             </button>
                                         </Link>
+                                    </td>
+                                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                                        {item.jobrefNum}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.firstname}
