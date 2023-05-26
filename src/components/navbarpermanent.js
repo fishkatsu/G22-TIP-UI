@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link, Outlet } from "react-router-dom";
+import { FcTimeline } from "react-icons/fc";
 
 const NavbarPermanent = () => {
     const [nav, setNav] = useState(false);
@@ -46,69 +46,52 @@ const NavbarPermanent = () => {
                         </Link>
                     </li>
                 </ul>
-
                 <div
                     onClick={handleNav}
                     className="block md:hidden"
                     style={{ zIndex: 1 }}
                 >
-                    {nav ? (
-                        <AiOutlineClose size={20} />
-                    ) : (
-                        <AiOutlineMenu size={20} />
-                    )}
+                    {nav ? <FcTimeline size={40} /> : <FcTimeline size={40} />}
                 </div>
                 <ul
                     className={
                         nav
-                            ? "fixed top-0 right-0 w-[60%] h-full border-l border-r-gray-900 ease-in-out duration-500 bg-gray-600"
+                            ? "fixed top-0 right-0 w-[60%] h-full border-l border-r-gray-900 ease-in-out duration-500 bg-gray-900"
                             : "ease-in-out duration-500 fixed right-[-100%]"
                     }
                 >
                     <h1 className="w-full text-3xl font-bold text-[#FFFFFF] m-4">
-                        Menu.
+                        Menu
                     </h1>
 
-                    <li className="p-4 border-b border-gray-700 text-[#FFFFFF]">
+                    <li className="p-4">
                         <Link
-                            to={"/"}
-                            className="mr-4 text-xl font-bold uppercase text-navMenu"
+                            to={"/landingpermanent"}
+                            className="mr-4 text-xl font-bold text-white uppercase text-navMenu"
                         >
                             Home
                         </Link>
                     </li>
-
-                    <li className="p-4 border-b border-gray-700 text-[#FFFFFF]">
+                    <li className="p-4 whitespace-nowrap">
                         <Link
                             to={"/manageapplication"}
-                            className="mr-4 text-xl font-bold uppercase text-navMenu"
+                            className="mr-4 text-xl font-bold text-white uppercase text-navMenu"
                         >
                             Application
                         </Link>
                     </li>
-
-                    <li className="p-4 border-b border-gray-700 text-[#FFFFFF]">
+                    <li className="p-4 whitespace-nowrap">
                         <Link
                             to={"/managesessional"}
-                            className="text-xl font-bold uppercase text-navMenu"
+                            className="text-xl font-bold text-white uppercase text-navMenu"
                         >
                             Sessional Staff
                         </Link>
                     </li>
-
-                    <li className="p-4 border-b border-gray-700 text-[#FFFFFF]">
-                        <Link
-                            to={"/publishrequest"}
-                            className="mr-4 text-xl font-bold uppercase text-navMenu"
-                        >
-                            Publish Request
-                        </Link>
-                    </li>
-
-                    <li className="p-4 text-[#FFFFFF]">
+                    <li className="p-4">
                         <Link
                             to={"/logout"}
-                            className="mr-4 text-xl font-bold uppercase text-navMenu"
+                            className="text-xl font-bold text-white uppercase text-navMenu"
                         >
                             Logout
                         </Link>

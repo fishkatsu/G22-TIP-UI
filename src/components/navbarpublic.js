@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link, Outlet } from "react-router-dom";
+// import burgerImage from "../assets/burger.png";
+import { FcTimeline } from "react-icons/fc";
 
 const NavbarPublic = () => {
     const [nav, setNav] = useState(false);
@@ -54,16 +55,12 @@ const NavbarPublic = () => {
                     className="block md:hidden"
                     style={{ zIndex: 1 }}
                 >
-                    {nav ? (
-                        <AiOutlineClose size={20} />
-                    ) : (
-                        <AiOutlineMenu size={20} />
-                    )}
+                    {nav ? <FcTimeline size={40} /> : <FcTimeline size={40} />}
                 </div>
                 <ul
                     className={
                         nav
-                            ? "fixed top-0 right-0 w-[60%] h-full border-l border-r-gray-900 ease-in-out duration-500 bg-gray-600"
+                            ? "fixed top-0 right-0 w-[60%] h-full border-l border-r-gray-900 ease-in-out duration-500 bg-gray-900"
                             : "ease-in-out duration-500 fixed right-[-100%]"
                     }
                 >
@@ -82,7 +79,7 @@ const NavbarPublic = () => {
 
                     <li className="p-4 border-b border-gray-700 text-[#FFFFFF]">
                         <Link
-                            to={"/jobavailable"}
+                            to={"/jobavailablep"}
                             className="mr-4 text-xl font-bold text-white uppercase text-navMenu"
                         >
                             Job Available
