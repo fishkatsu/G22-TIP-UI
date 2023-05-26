@@ -106,6 +106,12 @@ function TableC() {
                                 >
                                     Email Address
                                 </th>
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                                >
+                                    Availability
+                                </th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -136,6 +142,9 @@ function TableC() {
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                                         {item.email}
+                                    </td>
+                                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                                        {item.availability}
                                     </td>
                                 </tr>
                             ))}

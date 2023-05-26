@@ -146,6 +146,14 @@ function Table({ data }: { data: Applications[] }) {
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td className="w-1/4 pb-4 font-bold">
+                                            Availability:
+                                        </td>
+                                        <td className="w-3/4 pb-4">
+                                            {item.availability}
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td className="w-1/4 pb-4 font-bold align-top">
                                             School :
                                         </td>
